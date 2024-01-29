@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/01/27/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title></title>
+    <url>/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/</url>
+    <content><![CDATA[<h2 id="Centos7安装Docker"><a href="#Centos7安装Docker" class="headerlink" title="Centos7安装Docker"></a>Centos7安装Docker</h2><p>centos7镜像</p>
+<p><a href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
+<h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装需要的安装包yum-utils"><a href="#2-安装需要的安装包yum-utils" class="headerlink" title="2.安装需要的安装包yum-utils"></a>2.安装需要的安装包yum-utils</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="3-设置镜像仓库地址"><a href="#3-设置镜像仓库地址" class="headerlink" title="3.设置镜像仓库地址"></a>3.设置镜像仓库地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">&gt;--add-repo \</span><br><span class="line">&gt;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="4-安装docker相关的引擎"><a href="#4-安装docker相关的引擎" class="headerlink" title="4.安装docker相关的引擎"></a>4.安装docker相关的引擎</h3><p>更新yum软件包索引</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache fase </span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>安装Docker Engine-Community</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-启动docker"><a href="#5-启动docker" class="headerlink" title="5.启动docker"></a>5.启动docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-使用docker-version-查看dockers是否启动"><a href="#6-使用docker-version-查看dockers是否启动" class="headerlink" title="6.使用docker version 查看dockers是否启动"></a>6.使用docker version 查看dockers是否启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-使用hello-world镜像测试docker"><a href="#7-使用hello-world镜像测试docker" class="headerlink" title="7.使用hello-world镜像测试docker"></a>7.使用hello-world镜像测试docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-查看本机存在那些docker镜像"><a href="#8-查看本机存在那些docker镜像" class="headerlink" title="8.查看本机存在那些docker镜像"></a>8.查看本机存在那些docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker  images</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-卸载"><a href="#9-卸载" class="headerlink" title="9.卸载"></a>9.卸载</h3><p>卸载依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum  remove docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<p>删除资源</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf  /var/lib/docker    #/var/lib/docker 为docker默认的工作路径</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-使用阿里云镜像加速"><a href="#10-使用阿里云镜像加速" class="headerlink" title="10.使用阿里云镜像加速"></a>10.使用阿里云镜像加速</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://kskdqwg1.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
 ]]></content>
   </entry>
 </search>

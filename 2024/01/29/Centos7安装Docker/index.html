@@ -19,26 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"xuyitingg.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="学习">
-<meta property="og:type" content="website">
+    <meta name="description" content="Centos7安装Dockercentos7镜像 https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos-vault&#x2F;?spm&#x3D;a2c6h.25603864.0.0.34563df62Fi3td 1.安装之前现卸载系统上原有的Docker12345678yum remove docker \&gt;docker-client \&gt;docker-client-latest \&amp;gt">
+<meta property="og:type" content="article">
 <meta property="og:title" content="XXX">
-<meta property="og:url" content="https://xuyitingg.github.io/index.html">
+<meta property="og:url" content="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/index.html">
 <meta property="og:site_name" content="XXX">
-<meta property="og:description" content="学习">
+<meta property="og:description" content="Centos7安装Dockercentos7镜像 https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos-vault&#x2F;?spm&#x3D;a2c6h.25603864.0.0.34563df62Fi3td 1.安装之前现卸载系统上原有的Docker12345678yum remove docker \&gt;docker-client \&gt;docker-client-latest \&amp;gt">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-29T07:04:58.975Z">
+<meta property="article:modified_time" content="2024-01-17T13:43:54.820Z">
 <meta property="article:author" content="Xu">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://xuyitingg.github.io/">
+<link rel="canonical" href="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/","path":"2024/01/29/Centos7安装Docker/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>XXX</title>
+<title> | XXX</title>
   
 
 
@@ -71,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">XXX</h1>
+      <p class="site-title">XXX</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">XXX的blog</p>
@@ -125,7 +127,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -138,6 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos7%E5%AE%89%E8%A3%85Docker"><span class="nav-number">1.</span> <span class="nav-text">Centos7安装Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%89%8D%E7%8E%B0%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E4%B8%8A%E5%8E%9F%E6%9C%89%E7%9A%84Docker"><span class="nav-number">1.1.</span> <span class="nav-text">1.安装之前现卸载系统上原有的Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E9%9C%80%E8%A6%81%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85yum-utils"><span class="nav-number">1.2.</span> <span class="nav-text">2.安装需要的安装包yum-utils</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">1.3.</span> <span class="nav-text">3.设置镜像仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85docker%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BC%95%E6%93%8E"><span class="nav-number">1.4.</span> <span class="nav-text">4.安装docker相关的引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%90%AF%E5%8A%A8docker"><span class="nav-number">1.5.</span> <span class="nav-text">5.启动docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8docker-version-%E6%9F%A5%E7%9C%8Bdockers%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8"><span class="nav-number">1.6.</span> <span class="nav-text">6.使用docker version 查看dockers是否启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8hello-world%E9%95%9C%E5%83%8F%E6%B5%8B%E8%AF%95docker"><span class="nav-number">1.7.</span> <span class="nav-text">7.使用hello-world镜像测试docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BA%E5%AD%98%E5%9C%A8%E9%82%A3%E4%BA%9Bdocker%E9%95%9C%E5%83%8F"><span class="nav-number">1.8.</span> <span class="nav-text">8.查看本机存在那些docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.9.</span> <span class="nav-text">9.卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F"><span class="nav-number">1.10.</span> <span class="nav-text">10.使用阿里云镜像加速</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -169,16 +172,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -192,13 +196,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | XXX">
+      <meta itemprop="name" content=" | XXX">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -227,8 +231,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Centos7安装Docker"><a href="#Centos7安装Docker" class="headerlink" title="Centos7安装Docker"></a>Centos7安装Docker</h2><p>centos7镜像</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="Centos7安装Docker"><a href="#Centos7安装Docker" class="headerlink" title="Centos7安装Docker"></a>Centos7安装Docker</h2><p>centos7镜像</p>
 <p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
 <h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
 
@@ -267,7 +270,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -275,11 +277,13 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
     </footer>
   </article>
 </div>
+
 
 
 
