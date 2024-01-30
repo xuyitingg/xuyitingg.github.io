@@ -44,6 +44,42 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Git学习</title>
+    <url>/2024/01/29/Git/</url>
+    <content><![CDATA[<h5 id="Git官网"><a href="#Git官网" class="headerlink" title="Git官网"></a>Git官网</h5><p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<span id="more"></span>
+
+<p>安装过程中 在到Adjusting your PATH environment步骤时</p>
+<p>选择Use Git from Git Bash only</p>
+<h4 id="安装完后进行基本设置"><a href="#安装完后进行基本设置" class="headerlink" title="安装完后进行基本设置"></a>安装完后进行基本设置</h4><p>设置用户名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.name  &#x27;github上注册的用户名&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.email  &#x27;注册时候的邮箱&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="git连接远程分支"><a href="#git连接远程分支" class="headerlink" title="git连接远程分支"></a>git连接远程分支</h3><h4 id="1-clone"><a href="#1-clone" class="headerlink" title="1. clone"></a>1. clone</h4><p>如果是通过git clone https的可以直接</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>查看已连接远程仓库信息</p>
+<h4 id="2-not-clone"><a href="#2-not-clone" class="headerlink" title="2. not clone"></a>2. not clone</h4><p>先初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin https</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="IDEA项目"><a href="#IDEA项目" class="headerlink" title="IDEA项目"></a>IDEA项目</h2>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>Docker安装mysql</title>
@@ -112,6 +148,9 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>Docker安装redis</title>
@@ -135,45 +174,9 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auth 123456</span><br></pre></td></tr></table></figure>
 
 ]]></content>
-  </entry>
-  <entry>
-    <title>Git学习</title>
-    <url>/2024/01/29/Git/</url>
-    <content><![CDATA[<h5 id="Git官网"><a href="#Git官网" class="headerlink" title="Git官网"></a>Git官网</h5><p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
-<span id="more"></span>
-
-<p>安装过程中 在到Adjusting your PATH environment步骤时</p>
-<p>选择Use Git from Git Bash only</p>
-<h4 id="安装完后进行基本设置"><a href="#安装完后进行基本设置" class="headerlink" title="安装完后进行基本设置"></a>安装完后进行基本设置</h4><p>设置用户名：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.name  &#x27;github上注册的用户名&#x27;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.email  &#x27;注册时候的邮箱&#x27;</span><br></pre></td></tr></table></figure>
-
-<h3 id="git连接远程分支"><a href="#git连接远程分支" class="headerlink" title="git连接远程分支"></a>git连接远程分支</h3><h4 id="1-clone"><a href="#1-clone" class="headerlink" title="1. clone"></a>1. clone</h4><p>如果是通过git clone https的可以直接</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<p>查看已连接远程仓库信息</p>
-<h4 id="2-not-clone"><a href="#2-not-clone" class="headerlink" title="2. not clone"></a>2. not clone</h4><p>先初始化</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin https</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="IDEA项目"><a href="#IDEA项目" class="headerlink" title="IDEA项目"></a>IDEA项目</h2>]]></content>
-  </entry>
-  <entry>
-    <title>IDEA新建Maven项目</title>
-    <url>/2024/01/29/IDEA/</url>
-    <content><![CDATA[<p>ctrl+alt+shift+s</p>
-<span id="more"></span>
-
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118154925442.png" alt="image-20240118154925442"></p>
-]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>Linux设置yum源镜像</title>
@@ -202,6 +205,21 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IDEA新建Maven项目</title>
+    <url>/2024/01/29/IDEA/</url>
+    <content><![CDATA[<p>ctrl+alt+shift+s</p>
+<span id="more"></span>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118154925442.png" alt="image-20240118154925442"></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>U盘还原</title>
@@ -222,6 +240,9 @@
 <p>打开任务管理器</p>
 <p>右键Windows资源管理器-重新启动</p>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>创建个人blog</title>
@@ -327,6 +348,9 @@
 
 <p>就可以了</p>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>前端</title>
@@ -378,6 +402,9 @@
 <h4 id="配置启动可用网络和自动打开-在package-json文件中"><a href="#配置启动可用网络和自动打开-在package-json文件中" class="headerlink" title="配置启动可用网络和自动打开  在package.json文件中"></a>配置启动可用网络和自动打开  在package.json文件中</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;vite --host 0.0.0.0 --port 6666 --open&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>右键菜单集成打开方式</title>
@@ -396,6 +423,9 @@
 <p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240122175428738.png" alt="image-20240122175428738"></p>
 <h3 id="3-进入HKEY-CLASSES-ROOT-Directory-Background-shell"><a href="#3-进入HKEY-CLASSES-ROOT-Directory-Background-shell" class="headerlink" title="3.进入HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;Background&#x2F;shell"></a>3.进入HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;Background&#x2F;shell</h3><p>配置和2相同</p>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>安装Kuboard-Spray</title>
@@ -412,6 +442,9 @@
 <h3 id="工作节点-Worker"><a href="#工作节点-Worker" class="headerlink" title="工作节点(Worker):"></a>工作节点(Worker):</h3><p>负责运行容器化的应用程序和服务。它接收来自 Master 节点的任务，并负责创建、运行和监视容器。每个 Worker 节点上都会运行一个容器运行时（例如 Docker），以便在节点上启动和管理容器。</p>
 <h3 id="ETCD节点"><a href="#ETCD节点" class="headerlink" title="ETCD节点:"></a>ETCD节点:</h3><p>etcd 在 Kubernetes 中充当着集群的”大脑”，保存着集群的配置和状态信息。它是 Kubernetes 的关键基础设施组件之一，对于集群的稳定性和可靠性至关重要。</p>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>挂载硬盘</title>
@@ -434,11 +467,17 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsblk</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>重装EXSI系统</title>
     <url>/2024/01/29/%E9%87%8D%E8%A3%85EXSI%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<span id="more"></span>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
   </entry>
 </search>
