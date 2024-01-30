@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>Centos7安装Docker</title>
     <url>/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/</url>
-    <content><![CDATA[<h2 id="Centos7安装Docker"><a href="#Centos7安装Docker" class="headerlink" title="Centos7安装Docker"></a>Centos7安装Docker</h2><p>centos7镜像</p>
+    <content><![CDATA[<p>centos7镜像</p>
 <p><a href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
+<span id="more"></span>
+
 <h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-安装需要的安装包yum-utils"><a href="#2-安装需要的安装包yum-utils" class="headerlink" title="2.安装需要的安装包yum-utils"></a>2.安装需要的安装包yum-utils</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
@@ -41,6 +43,402 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 
+]]></content>
+  </entry>
+  <entry>
+    <title>Docker安装mysql</title>
+    <url>/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/</url>
+    <content><![CDATA[<h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1.拉取镜像"></a>1.拉取镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull mysql:latest									#默认拉取最新版</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="2-查看镜像"><a href="#2-查看镜像" class="headerlink" title="2.查看镜像"></a>2.查看镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-运行镜像"><a href="#3-运行镜像" class="headerlink" title="3.运行镜像"></a>3.运行镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -p 3306:3306 --name mysql --restart=always --privileged=true \</span><br><span class="line">-v /usr/local/mysql/log:/var/log/mysql \</span><br><span class="line">-v /usr/local/mysql/data:/var/lib/mysql \</span><br><span class="line">-v /usr/local/mysql/conf:/etc/mysql \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-查看正在运行的容器"><a href="#4-查看正在运行的容器" class="headerlink" title="4.查看正在运行的容器"></a>4.查看正在运行的容器</h3><p>如果显示的是up状态 就是启动成功的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps												#查看正在运行的容器</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps -a											# 查看所有的docker容器</span><br></pre></td></tr></table></figure>
+
+<p>如果显示的是restarting 说明是有问题的 我们可以查看日志</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs -f mysql</span><br></pre></td></tr></table></figure>
+
+<p>可能会发现：Failed to access directory for –secure-file-priv. Please make sure that dir</p>
+<p>执行6</p>
+<h3 id="5-查看容器内部"><a href="#5-查看容器内部" class="headerlink" title="5.查看容器内部"></a>5.查看容器内部</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it mysql /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-修改mysql配置"><a href="#6-修改mysql配置" class="headerlink" title="6.修改mysql配置"></a>6.修改mysql配置</h3><p>创建mysql配置文件: my.cnf</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/local/mysql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ll</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>在my.cnf文件中写入:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysqld]</span><br><span class="line"># 设置东八区时区</span><br><span class="line">default-time_zone = &#x27;+8:00&#x27;</span><br><span class="line"># 设置密码验证规则，default_authentication_plugin参数已被废弃</span><br><span class="line"># 改为authentication_policy</span><br><span class="line">#default_authentication_plugin=mysql_native_password</span><br><span class="line">authentication_policy=mysql_native_password</span><br><span class="line"># 限制导入和导出的数据目录</span><br><span class="line"># 为空，不限制导入到处的数据目录；</span><br><span class="line"># 指定目录，必须从该目录导入到处，且MySQL不会自动创建该目录；</span><br><span class="line"># 为NULL，禁止导入与导出功能</span><br><span class="line">#secure_file_priv=/var/lib/mysql</span><br><span class="line">secure_file_priv=</span><br><span class="line">init_connect=&#x27;SET collation_connection = utf8mb4_0900_ai_ci&#x27;</span><br><span class="line">init_connect=&#x27;SET NAMES utf8mb4&#x27;</span><br><span class="line">character-set-server=utf8mb4</span><br><span class="line">collation-server=utf8mb4_0900_ai_ci</span><br><span class="line">skip-character-set-client-handshake</span><br><span class="line">skip-name-resolve</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-重启mysql服务-使配置生效"><a href="#7-重启mysql服务-使配置生效" class="headerlink" title="7.重启mysql服务 使配置生效"></a>7.重启mysql服务 使配置生效</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-设置docker启动时启动mysql"><a href="#8-设置docker启动时启动mysql" class="headerlink" title="8.设置docker启动时启动mysql"></a>8.设置docker启动时启动mysql</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker update mysql --restart=always</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-重启mysql"><a href="#9-重启mysql" class="headerlink" title="9.重启mysql"></a>9.重启mysql</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-授权远程访问"><a href="#10-授权远程访问" class="headerlink" title="10.授权远程访问"></a>10.授权远程访问</h3><p>进入容器内部</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it mysql /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>登录mysql (不输入密码直接回车)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>选择数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use mysql;</span><br></pre></td></tr></table></figure>
+
+<p>查看用户连接情况</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select host, user, plugin,  authentication_string, password_expired from user;</span><br></pre></td></tr></table></figure>
+
+<p>如果看到root用户对应的host只有localhost连接权限</p>
+<p>修改密码认证方式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER root@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER root@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>刷新权限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<p>退出容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>Docker安装redis</title>
+    <url>/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/</url>
+    <content><![CDATA[<h3 id="redis设置密码"><a href="#redis设置密码" class="headerlink" title="redis设置密码"></a>redis设置密码</h3><h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><span id="more"></span>
+
+<p>①.到redis的配置文件 redis.conf里 vi 修改requirepass 先把注释去掉 再把后面字段改成想要的密码</p>
+<p>②.连接redis之后 通过命令设置</p>
+<p>连接redis</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">redis-cli</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config set requirepass 123456</span><br></pre></td></tr></table></figure>
+
+<p>查看密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">config get requirepass</span><br></pre></td></tr></table></figure>
+
+<h4 id="登录时输入密码"><a href="#登录时输入密码" class="headerlink" title="登录时输入密码"></a>登录时输入密码</h4><p>①.连接的时候直接输入密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./redis-cli -p 4321 -a 123456</span><br></pre></td></tr></table></figure>
+
+<p>②.连接上后再输入密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auth 123456</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>Git学习</title>
+    <url>/2024/01/29/Git/</url>
+    <content><![CDATA[<h5 id="Git官网"><a href="#Git官网" class="headerlink" title="Git官网"></a>Git官网</h5><p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<span id="more"></span>
+
+<p>安装过程中 在到Adjusting your PATH environment步骤时</p>
+<p>选择Use Git from Git Bash only</p>
+<h4 id="安装完后进行基本设置"><a href="#安装完后进行基本设置" class="headerlink" title="安装完后进行基本设置"></a>安装完后进行基本设置</h4><p>设置用户名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.name  &#x27;github上注册的用户名&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.email  &#x27;注册时候的邮箱&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="git连接远程分支"><a href="#git连接远程分支" class="headerlink" title="git连接远程分支"></a>git连接远程分支</h3><h4 id="1-clone"><a href="#1-clone" class="headerlink" title="1. clone"></a>1. clone</h4><p>如果是通过git clone https的可以直接</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>查看已连接远程仓库信息</p>
+<h4 id="2-not-clone"><a href="#2-not-clone" class="headerlink" title="2. not clone"></a>2. not clone</h4><p>先初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin https</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="IDEA项目"><a href="#IDEA项目" class="headerlink" title="IDEA项目"></a>IDEA项目</h2>]]></content>
+  </entry>
+  <entry>
+    <title>IDEA新建Maven项目</title>
+    <url>/2024/01/29/IDEA/</url>
+    <content><![CDATA[<p>ctrl+alt+shift+s</p>
+<span id="more"></span>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118154925442.png" alt="image-20240118154925442"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux设置yum源镜像</title>
+    <url>/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/</url>
+    <content><![CDATA[<h3 id="1-验证网络是否可以连接阿里云镜像"><a href="#1-验证网络是否可以连接阿里云镜像" class="headerlink" title="1.验证网络是否可以连接阿里云镜像"></a>1.验证网络是否可以连接阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="2-安装wget包"><a href="#2-安装wget包" class="headerlink" title="2.安装wget包"></a>2.安装wget包</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-删除原yum源"><a href="#3-删除原yum源" class="headerlink" title="3.删除原yum源"></a>3.删除原yum源</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf /etc/yum.repos.d/*</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载阿里云Centos-7-repo文件"><a href="#4-下载阿里云Centos-7-repo文件" class="headerlink" title="4.下载阿里云Centos-7.repo文件"></a>4.下载阿里云Centos-7.repo文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-清除yum缓存"><a href="#5-清除yum缓存" class="headerlink" title="5.清除yum缓存"></a>5.清除yum缓存</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-缓存阿里云镜像"><a href="#6-缓存阿里云镜像" class="headerlink" title="6.缓存阿里云镜像"></a>6.缓存阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-查看yum源信息"><a href="#7-查看yum源信息" class="headerlink" title="7.查看yum源信息"></a>7.查看yum源信息</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-如果直接yum-install-wget失败-先执行"><a href="#1-如果直接yum-install-wget失败-先执行" class="headerlink" title="1.如果直接yum install wget失败 先执行"></a>1.如果直接yum install wget失败 先执行</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>U盘还原</title>
+    <url>/2024/01/29/U%E7%9B%98%E8%BF%98%E5%8E%9F/</url>
+    <content><![CDATA[<h3 id="1-WIN-R输入diskpart-打开终端"><a href="#1-WIN-R输入diskpart-打开终端" class="headerlink" title="1.WIN+R输入diskpart 打开终端"></a>1.WIN+R输入diskpart 打开终端</h3><span id="more"></span>
+
+<h3 id="2-输入list-disk-显示磁盘列表"><a href="#2-输入list-disk-显示磁盘列表" class="headerlink" title="2.输入list disk 显示磁盘列表"></a>2.输入list disk 显示磁盘列表</h3><h3 id="3-sel-dis-3-选中U盘"><a href="#3-sel-dis-3-选中U盘" class="headerlink" title="3.sel dis 3 选中U盘"></a>3.sel dis 3 选中U盘</h3><h3 id="4-clean"><a href="#4-clean" class="headerlink" title="4.clean"></a>4.clean</h3><h3 id="5-cre-par-pri-新建分区"><a href="#5-cre-par-pri-新建分区" class="headerlink" title="5.cre par pri 新建分区"></a>5.cre par pri 新建分区</h3><h3 id="6-format-fs-ntfs-quick-格式化"><a href="#6-format-fs-ntfs-quick-格式化" class="headerlink" title="6.format fs&#x3D;ntfs quick 格式化"></a>6.format fs&#x3D;ntfs quick 格式化</h3><h3 id="7-assign-letter-x"><a href="#7-assign-letter-x" class="headerlink" title="7.assign letter  x"></a>7.assign letter  x</h3>]]></content>
+  </entry>
+  <entry>
+    <title>改Win10右键菜单</title>
+    <url>/2024/01/29/WIN11%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%94%B9%E5%9B%9EWIN10/</url>
+    <content><![CDATA[<h3 id="直接输命令"><a href="#直接输命令" class="headerlink" title="直接输命令"></a>直接输命令</h3><p>WIN+X选择Windows终端(管理员)进入终端</p>
+<span id="more"></span>
+
+<p>输出这段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reg add &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot; /f /ve</span><br></pre></td></tr></table></figure>
+
+<p>打开任务管理器</p>
+<p>右键Windows资源管理器-重新启动</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>创建个人blog</title>
+    <url>/2024/01/29/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BAblog/</url>
+    <content><![CDATA[<h4 id="用到的工具-hexo"><a href="#用到的工具-hexo" class="headerlink" title="用到的工具:hexo"></a>用到的工具:hexo</h4><h4 id="前提条件："><a href="#前提条件：" class="headerlink" title="前提条件："></a>前提条件：</h4><p>git nodejs npm</p>
+<p>且git已配置</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
+
+<p>检查</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-安装hexo"><a href="#1-安装hexo" class="headerlink" title="1.安装hexo"></a>1.安装hexo</h3><p>新建个文件夹blog 然后点进文件夹 右键open with gitbash</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>查看hexo版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-初始化hexo"><a href="#2-初始化hexo" class="headerlink" title="2.初始化hexo"></a>2.初始化hexo</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init xuyitingg</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd xuyitingg</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>这样可以在浏览器中输入localhost:4000看到已生成的blog</p>
+<p>ctrl C关掉服务</p>
+<h3 id="3-Github创建个人仓库"><a href="#3-Github创建个人仓库" class="headerlink" title="3.Github创建个人仓库"></a>3.Github创建个人仓库</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127174604964.png" alt="image-20240127174604964"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127174709573.png" alt="image-20240127174709573"></p>
+<h3 id="4-生成SSH添加到GitHub"><a href="#4-生成SSH添加到GitHub" class="headerlink" title="4.生成SSH添加到GitHub"></a>4.生成SSH添加到GitHub</h3><p>先检查</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+
+<p>创建SSH</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
+
+<p>到C:\Users\Administrator.ssh这个路径下把id_rsa.pub内容复制到</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127175008755.png" alt="image-20240127175008755"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127175201338.png" alt="image-20240127175201338"></p>
+<p>然后在gitbash中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>如果失败 就在C:\Users\Administrator.ssh路径下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim config</span><br></pre></td></tr></table></figure>
+
+<p>然后输入以下代码并保存</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">User 你的Github账号名</span><br><span class="line">Hostname ssh.github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line">Port 443</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-将hexo部署到GitHub"><a href="#5-将hexo部署到GitHub" class="headerlink" title="5.将hexo部署到GitHub"></a>5.将hexo部署到GitHub</h3><p>进入到blog路径下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<p>翻到最后 修改为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:yourgithubname/yourgithubname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>安装deploy-git</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>清除</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>生成静态文章</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>部署文章</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>这样就代表成功</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127175852006.png" alt="image-20240127175852006"></p>
+<p>然后就可以直接在浏览器输入yourgithubname.github.io看到blog了</p>
+<h4 id="如果遇到404"><a href="#如果遇到404" class="headerlink" title="如果遇到404"></a>如果遇到404</h4><p>在E:\Code\blog\myblog\source这个路径下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim CNAME</span><br></pre></td></tr></table></figure>
+
+<p>然后写上绑定的一级域名 就是yourgithubname.github.io</p>
+<h3 id="6-写文章"><a href="#6-写文章" class="headerlink" title="6.写文章"></a>6.写文章</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new newpapername</span><br></pre></td></tr></table></figure>
+
+<p>然后在source&#x2F;_post中打开markdown文件，就可以开始编辑了</p>
+<p>写完之后要输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>就可以看到更新了</p>
+<h3 id="7-更改主题-next"><a href="#7-更改主题-next" class="headerlink" title="7.更改主题(next)"></a>7.更改主题(next)</h3><p>cd到博客的根目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git glone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>然后把文件夹名字改为next</p>
+<p>再到根目录下</p>
+<p>改_config.yml文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: next</span><br><span class="line">url: https://xuyitingg.github.io</span><br></pre></td></tr></table></figure>
+
+<p>theme: next</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<p>在根目录下新建一个文件_config.next.yml</p>
+<p>localhost:4000就能看到内容了</p>
+<p>然后</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p>就可以输入域名进行访问</p>
+<p>如果输入域名访问的是之前的初始界面</p>
+<p>清除缓存</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>就可以了</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>前端</title>
+    <url>/2024/01/29/%E5%89%8D%E7%AB%AF/</url>
+    <content><![CDATA[<h3 id="1-查看vue版本"><a href="#1-查看vue版本" class="headerlink" title="1.查看vue版本"></a>1.查看vue版本</h3><p>在想要创建项目的路径下打开终端</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue -V</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="2-创建项目"><a href="#2-创建项目" class="headerlink" title="2.创建项目"></a>2.创建项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue create vue3							#小写</span><br></pre></td></tr></table></figure>
+
+<p>选择快速搭建vue3项目</p>
+<h3 id="3-安装依赖"><a href="#3-安装依赖" class="headerlink" title="3.安装依赖"></a>3.安装依赖</h3><p>VS Code打开已安装的vue3文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-运行项目"><a href="#4-运行项目" class="headerlink" title="4.运行项目"></a>4.运行项目</h3><h4 id="如果package-json文件内部scripts格式为"><a href="#如果package-json文件内部scripts格式为" class="headerlink" title="如果package.json文件内部scripts格式为"></a>如果package.json文件内部scripts格式为</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;serve&quot;: &quot;vue-cli-service serve&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;vue-cli-service build&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;vue-cli-service lint&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<h4 id="如果package-json文件内部scripts格式为-1"><a href="#如果package-json文件内部scripts格式为-1" class="headerlink" title="如果package.json文件内部scripts格式为"></a>如果package.json文件内部scripts格式为</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;max dev&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;max build&quot;,</span><br><span class="line">    &quot;format&quot;: &quot;prettier --cache --write .&quot;,</span><br><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;,</span><br><span class="line">    &quot;postinstall&quot;: &quot;max setup&quot;,</span><br><span class="line">    &quot;setup&quot;: &quot;max setup&quot;,</span><br><span class="line">    &quot;openapi&quot;: &quot;max openapi&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── src</span><br><span class="line">│ ├── assets // 存储静态资源的目录，如图片、字体等</span><br><span class="line">│ ├── components // 存储共享组件</span><br><span class="line">│ ├── router // 存储应用的路由配置</span><br><span class="line">│ ├── store // 存储应用的状态管理</span><br><span class="line">│ ├── styles // 存储全局的样式</span><br><span class="line">│ ├── utils // 存储项目中的公共方法</span><br><span class="line">│ ├── views // 存储不同的页面视图</span><br><span class="line">│ ├── App.vue // 根组件</span><br><span class="line">│ └── main.ts // 应用入口文件</span><br><span class="line">├── index.html // HTML 模板文件</span><br><span class="line">├── package.json // npm 包管理文件</span><br><span class="line">├── tsconfig.json // TypeScript 配置文件</span><br><span class="line">└── vite.config.ts // Vite 构建工具的配置文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="创建VUE3-Vite项目"><a href="#创建VUE3-Vite项目" class="headerlink" title="创建VUE3+Vite项目"></a>创建VUE3+Vite项目</h2><h3 id="1-完成项目的初始化"><a href="#1-完成项目的初始化" class="headerlink" title="1.完成项目的初始化"></a>1.完成项目的初始化</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init vite@latest xxx --template vue-ts</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127140603574.png" alt="image-20240127140603574"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127140652735.png" alt="image-20240127140652735"></p>
+<h3 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启动项目"><a href="#3-启动项目" class="headerlink" title="3.启动项目"></a>3.启动项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="配置启动可用网络和自动打开-在package-json文件中"><a href="#配置启动可用网络和自动打开-在package-json文件中" class="headerlink" title="配置启动可用网络和自动打开  在package.json文件中"></a>配置启动可用网络和自动打开  在package.json文件中</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;vite --host 0.0.0.0 --port 6666 --open&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>右键菜单集成打开方式</title>
+    <url>/2024/01/29/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E9%9B%86%E6%88%90%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="WIN-R输入regedit打开注册表编辑器"><a href="#WIN-R输入regedit打开注册表编辑器" class="headerlink" title="WIN+R输入regedit打开注册表编辑器"></a>WIN+R输入regedit打开注册表编辑器</h2><span id="more"></span>
+
+<h3 id="1-进入HKEY-CLASSES-ROOT-shell"><a href="#1-进入HKEY-CLASSES-ROOT-shell" class="headerlink" title="1.进入HKEY_CLASSES_ROOT&#x2F;*&#x2F;shell"></a>1.进入HKEY_CLASSES_ROOT&#x2F;*&#x2F;shell</h3><p>新建项 命名为Open With IDEA 在Open With IDEA新建字符串值</p>
+<p>配置如下</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240122175215350.png" alt="image-20240122175215350"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240122175230452.png" alt="image-20240122175230452"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240122175240065.png" alt="image-20240122175240065"></p>
+<p>然后在Open With IDEA目录下新建项command</p>
+<p>配置如下</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240122175333671.png" alt="image-20240122175333671"></p>
+<h3 id="2-进入HKEY-CLASSES-ROOT-Directory-shell"><a href="#2-进入HKEY-CLASSES-ROOT-Directory-shell" class="headerlink" title="2.进入HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;shell"></a>2.进入HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;shell</h3><p>配置和1相同 但是在command数值为</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240122175428738.png" alt="image-20240122175428738"></p>
+<h3 id="3-进入HKEY-CLASSES-ROOT-Directory-Background-shell"><a href="#3-进入HKEY-CLASSES-ROOT-Directory-Background-shell" class="headerlink" title="3.进入HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;Background&#x2F;shell"></a>3.进入HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;Background&#x2F;shell</h3><p>配置和2相同</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>安装Kuboard-Spray</title>
+    <url>/2024/01/29/%E5%AE%89%E8%A3%85Kuboard-Spray/</url>
+    <content><![CDATA[<h3 id="1-在已装好docker的服务器上"><a href="#1-在已装好docker的服务器上" class="headerlink" title="1.在已装好docker的服务器上"></a>1.在已装好docker的服务器上</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --privileged \</span><br><span class="line">  --restart=unless-stopped \</span><br><span class="line">  --name=kuboard-spray \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  -p 80:80/tcp \</span><br><span class="line">  -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">  -v ~/kuboard-spray-data:/data \</span><br><span class="line">  eipwork/kuboard-spray:latest-amd64</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>在浏览器打开地址 <code>http://这台机器的IP</code>，输入用户名 <code>admin</code>，默认密码 <code>Kuboard123</code>，即可登录 Kuboard-Spray 界面</p>
+<h3 id="2-导入最新资源包"><a href="#2-导入最新资源包" class="headerlink" title="2.导入最新资源包"></a>2.导入最新资源包</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115454230.png" alt="image-20240118115454230"></p>
+<h3 id="3-添加集群安装计划"><a href="#3-添加集群安装计划" class="headerlink" title="3.添加集群安装计划"></a>3.添加集群安装计划</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115522093.png" alt="image-20240118115522093"></p>
+<h3 id="4-添加节点-保存并安装集群"><a href="#4-添加节点-保存并安装集群" class="headerlink" title="4.添加节点 保存并安装集群"></a>4.添加节点 保存并安装集群</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115703643.png" alt="image-20240118115703643"></p>
+<p>点击安装集群之后会跳转到日志界面详细内容</p>
+<h3 id="5-成功后会跳转到访问集群界面"><a href="#5-成功后会跳转到访问集群界面" class="headerlink" title="5.成功后会跳转到访问集群界面"></a>5.成功后会跳转到访问集群界面</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115740425.png" alt="image-20240118115740425"></p>
+<h2 id="三种节点角色"><a href="#三种节点角色" class="headerlink" title="三种节点角色"></a>三种节点角色</h2><h3 id="控制节点-Master"><a href="#控制节点-Master" class="headerlink" title="控制节点(Master):"></a>控制节点(Master):</h3><p>负责管理整个集群的状态和控制集群中的各个工作节点。Master 节点上运行了多个关键组件，包括 <code>kube-apiserver</code>、<code>kube-controller-manager</code>、<code>kube-scheduler</code> 等。这些组件协同工作以确保集群的正常运行，接受 API 请求、调度工作负载并维护集群的期望状态。</p>
+<h3 id="工作节点-Worker"><a href="#工作节点-Worker" class="headerlink" title="工作节点(Worker):"></a>工作节点(Worker):</h3><p>负责运行容器化的应用程序和服务。它接收来自 Master 节点的任务，并负责创建、运行和监视容器。每个 Worker 节点上都会运行一个容器运行时（例如 Docker），以便在节点上启动和管理容器。</p>
+<h3 id="ETCD节点"><a href="#ETCD节点" class="headerlink" title="ETCD节点:"></a>ETCD节点:</h3><p>etcd 在 Kubernetes 中充当着集群的”大脑”，保存着集群的配置和状态信息。它是 Kubernetes 的关键基础设施组件之一，对于集群的稳定性和可靠性至关重要。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>挂载硬盘</title>
+    <url>/2024/01/29/%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
+    <content><![CDATA[<p>Esxi主机10.7.89.77下有四个虚拟机 其中10.7.89.88要挂载新的硬盘 此时的数据存储只有datastore1这个硬盘</p>
+<span id="more"></span>
+
+<h3 id="1-把另外两个硬盘加进来"><a href="#1-把另外两个硬盘加进来" class="headerlink" title="1.把另外两个硬盘加进来"></a>1.把另外两个硬盘加进来</h3><p>存储-新建数据存储</p>
+<h3 id="2-把新建的数据存储挂载到10-7-89-88中"><a href="#2-把新建的数据存储挂载到10-7-89-88中" class="headerlink" title="2.把新建的数据存储挂载到10.7.89.88中"></a>2.把新建的数据存储挂载到10.7.89.88中</h3><p>10.7.89.88-编辑设置-添加硬盘-新标准硬盘</p>
+<h3 id="3-连接到10-7-89-88虚拟机"><a href="#3-连接到10-7-89-88虚拟机" class="headerlink" title="3.连接到10.7.89.88虚拟机"></a>3.连接到10.7.89.88虚拟机</h3><p>列出硬盘和分区信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsblk</span><br></pre></td></tr></table></figure>
+
+<p>格式化硬盘</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkfs.ext4 /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p>挂载硬盘</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount /dev/sdb /data/log</span><br></pre></td></tr></table></figure>
+
+<p>查看硬盘和分区信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsblk</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>重装EXSI系统</title>
+    <url>/2024/01/29/%E9%87%8D%E8%A3%85EXSI%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<span id="more"></span>
 ]]></content>
   </entry>
 </search>

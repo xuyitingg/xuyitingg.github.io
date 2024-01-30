@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"xuyitingg.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="centos7镜像 https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos-vault&#x2F;?spm&#x3D;a2c6h.25603864.0.0.34563df62Fi3td">
+    <meta name="description" content="1.验证网络是否可以连接阿里云镜像1ping mirrors.aliyun.com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos7安装Docker">
-<meta property="og:url" content="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/index.html">
+<meta property="og:title" content="Linux设置yum源镜像">
+<meta property="og:url" content="https://xuyitingg.github.io/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/index.html">
 <meta property="og:site_name" content="X">
-<meta property="og:description" content="centos7镜像 https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos-vault&#x2F;?spm&#x3D;a2c6h.25603864.0.0.34563df62Fi3td">
+<meta property="og:description" content="1.验证网络是否可以连接阿里云镜像1ping mirrors.aliyun.com">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-29T08:03:52.000Z">
-<meta property="article:modified_time" content="2024-01-30T02:05:23.426Z">
+<meta property="article:modified_time" content="2024-01-30T02:05:28.123Z">
 <meta property="article:author" content="Xu">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/">
+<link rel="canonical" href="https://xuyitingg.github.io/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/","path":"2024/01/29/Centos7安装Docker/","title":"Centos7安装Docker"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xuyitingg.github.io/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/","path":"2024/01/29/Linux设置yum源为阿里云镜像源/","title":"Linux设置yum源镜像"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Centos7安装Docker | X</title>
+<title>Linux设置yum源镜像 | X</title>
   
 
 
@@ -140,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%89%8D%E7%8E%B0%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E4%B8%8A%E5%8E%9F%E6%9C%89%E7%9A%84Docker"><span class="nav-number">1.</span> <span class="nav-text">1.安装之前现卸载系统上原有的Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E9%9C%80%E8%A6%81%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85yum-utils"><span class="nav-number">2.</span> <span class="nav-text">2.安装需要的安装包yum-utils</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">3.设置镜像仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85docker%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BC%95%E6%93%8E"><span class="nav-number">4.</span> <span class="nav-text">4.安装docker相关的引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%90%AF%E5%8A%A8docker"><span class="nav-number">5.</span> <span class="nav-text">5.启动docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8docker-version-%E6%9F%A5%E7%9C%8Bdockers%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8"><span class="nav-number">6.</span> <span class="nav-text">6.使用docker version 查看dockers是否启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8hello-world%E9%95%9C%E5%83%8F%E6%B5%8B%E8%AF%95docker"><span class="nav-number">7.</span> <span class="nav-text">7.使用hello-world镜像测试docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BA%E5%AD%98%E5%9C%A8%E9%82%A3%E4%BA%9Bdocker%E9%95%9C%E5%83%8F"><span class="nav-number">8.</span> <span class="nav-text">8.查看本机存在那些docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%8D%B8%E8%BD%BD"><span class="nav-number">9.</span> <span class="nav-text">9.卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F"><span class="nav-number">10.</span> <span class="nav-text">10.使用阿里云镜像加速</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%AA%8C%E8%AF%81%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F"><span class="nav-number">1.</span> <span class="nav-text">1.验证网络是否可以连接阿里云镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85wget%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">2.安装wget包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%A0%E9%99%A4%E5%8E%9Fyum%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">3.删除原yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%B8%8B%E8%BD%BD%E9%98%BF%E9%87%8C%E4%BA%91Centos-7-repo%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">4.下载阿里云Centos-7.repo文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B8%85%E9%99%A4yum%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">5.清除yum缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%BC%93%E5%AD%98%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F"><span class="nav-number">6.</span> <span class="nav-text">6.缓存阿里云镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%9F%A5%E7%9C%8Byum%E6%BA%90%E4%BF%A1%E6%81%AF"><span class="nav-number">7.</span> <span class="nav-text">7.查看yum源信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number"></span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A6%82%E6%9E%9C%E7%9B%B4%E6%8E%A5yum-install-wget%E5%A4%B1%E8%B4%A5-%E5%85%88%E6%89%A7%E8%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">1.如果直接yum install wget失败 先执行</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +178,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/">
+    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.png">
@@ -191,12 +191,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Centos7安装Docker | X">
+      <meta itemprop="name" content="Linux设置yum源镜像 | X">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Centos7安装Docker
+          Linux设置yum源镜像
         </h1>
 
         <div class="post-meta-container">
@@ -214,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-30 10:05:23" itemprop="dateModified" datetime="2024-01-30T10:05:23+08:00">2024-01-30</time>
+      <time title="修改时间：2024-01-30 10:05:28" itemprop="dateModified" datetime="2024-01-30T10:05:28+08:00">2024-01-30</time>
     </span>
 
   
@@ -226,45 +226,28 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>centos7镜像</p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
+    <div class="post-body" itemprop="articleBody"><h3 id="1-验证网络是否可以连接阿里云镜像"><a href="#1-验证网络是否可以连接阿里云镜像" class="headerlink" title="1.验证网络是否可以连接阿里云镜像"></a>1.验证网络是否可以连接阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 
-<h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装wget包"><a href="#2-安装wget包" class="headerlink" title="2.安装wget包"></a>2.安装wget包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-安装需要的安装包yum-utils"><a href="#2-安装需要的安装包yum-utils" class="headerlink" title="2.安装需要的安装包yum-utils"></a>2.安装需要的安装包yum-utils</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+<h3 id="3-删除原yum源"><a href="#3-删除原yum源" class="headerlink" title="3.删除原yum源"></a>3.删除原yum源</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-设置镜像仓库地址"><a href="#3-设置镜像仓库地址" class="headerlink" title="3.设置镜像仓库地址"></a>3.设置镜像仓库地址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">&gt;--add-repo \</span><br><span class="line">&gt;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /etc/yum.repos.d/*</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-安装docker相关的引擎"><a href="#4-安装docker相关的引擎" class="headerlink" title="4.安装docker相关的引擎"></a>4.安装docker相关的引擎</h3><p>更新yum软件包索引</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache fase </span><br></pre></td></tr></table></figure>
+<h3 id="4-下载阿里云Centos-7-repo文件"><a href="#4-下载阿里云Centos-7-repo文件" class="headerlink" title="4.下载阿里云Centos-7.repo文件"></a>4.下载阿里云Centos-7.repo文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
 
-<p>安装Docker Engine-Community</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<h3 id="5-清除yum缓存"><a href="#5-清除yum缓存" class="headerlink" title="5.清除yum缓存"></a>5.清除yum缓存</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-启动docker"><a href="#5-启动docker" class="headerlink" title="5.启动docker"></a>5.启动docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
+<h3 id="6-缓存阿里云镜像"><a href="#6-缓存阿里云镜像" class="headerlink" title="6.缓存阿里云镜像"></a>6.缓存阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-使用docker-version-查看dockers是否启动"><a href="#6-使用docker-version-查看dockers是否启动" class="headerlink" title="6.使用docker version 查看dockers是否启动"></a>6.使用docker version 查看dockers是否启动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+<h3 id="7-查看yum源信息"><a href="#7-查看yum源信息" class="headerlink" title="7.查看yum源信息"></a>7.查看yum源信息</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
 
-<h3 id="7-使用hello-world镜像测试docker"><a href="#7-使用hello-world镜像测试docker" class="headerlink" title="7.使用hello-world镜像测试docker"></a>7.使用hello-world镜像测试docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
 
-<h3 id="8-查看本机存在那些docker镜像"><a href="#8-查看本机存在那些docker镜像" class="headerlink" title="8.查看本机存在那些docker镜像"></a>8.查看本机存在那些docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  images</span><br></pre></td></tr></table></figure>
 
-<h3 id="9-卸载"><a href="#9-卸载" class="headerlink" title="9.卸载"></a>9.卸载</h3><p>卸载依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum  remove docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-如果直接yum-install-wget失败-先执行"><a href="#1-如果直接yum-install-wget失败-先执行" class="headerlink" title="1.如果直接yum install wget失败 先执行"></a>1.如果直接yum install wget失败 先执行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
 
-<p>删除资源</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  /var/lib/docker    #/var/lib/docker 为docker默认的工作路径</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-使用阿里云镜像加速"><a href="#10-使用阿里云镜像加速" class="headerlink" title="10.使用阿里云镜像加速"></a>10.使用阿里云镜像加速</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://kskdqwg1.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -279,11 +262,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/" rel="prev" title="Docker安装mysql">
-                  <i class="fa fa-angle-left"></i> Docker安装mysql
+                <a href="/2024/01/29/U%E7%9B%98%E8%BF%98%E5%8E%9F/" rel="prev" title="U盘还原">
+                  <i class="fa fa-angle-left"></i> U盘还原
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/01/29/IDEA/" rel="next" title="IDEA新建Maven项目">
+                  IDEA新建Maven项目 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

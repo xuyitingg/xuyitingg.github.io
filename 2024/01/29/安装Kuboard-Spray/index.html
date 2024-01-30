@@ -19,28 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"xuyitingg.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="centos7镜像 https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos-vault&#x2F;?spm&#x3D;a2c6h.25603864.0.0.34563df62Fi3td">
+    <meta name="description" content="1.在已装好docker的服务器上123456789docker run -d \  --privileged \  --restart&#x3D;unless-stopped \  --name&#x3D;kuboard-spray \  -e TZ&#x3D;Asia&#x2F;Shanghai \  -p 80:80&#x2F;tcp \  -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock \  -v">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos7安装Docker">
-<meta property="og:url" content="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/index.html">
+<meta property="og:title" content="安装Kuboard-Spray">
+<meta property="og:url" content="https://xuyitingg.github.io/2024/01/29/%E5%AE%89%E8%A3%85Kuboard-Spray/index.html">
 <meta property="og:site_name" content="X">
-<meta property="og:description" content="centos7镜像 https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos-vault&#x2F;?spm&#x3D;a2c6h.25603864.0.0.34563df62Fi3td">
+<meta property="og:description" content="1.在已装好docker的服务器上123456789docker run -d \  --privileged \  --restart&#x3D;unless-stopped \  --name&#x3D;kuboard-spray \  -e TZ&#x3D;Asia&#x2F;Shanghai \  -p 80:80&#x2F;tcp \  -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock \  -v">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115454230.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115522093.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115703643.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115740425.png">
 <meta property="article:published_time" content="2024-01-29T08:03:52.000Z">
-<meta property="article:modified_time" content="2024-01-30T02:05:23.426Z">
+<meta property="article:modified_time" content="2024-01-30T02:05:17.701Z">
 <meta property="article:author" content="Xu">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115454230.png">
 
 
-<link rel="canonical" href="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/">
+<link rel="canonical" href="https://xuyitingg.github.io/2024/01/29/%E5%AE%89%E8%A3%85Kuboard-Spray/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/","path":"2024/01/29/Centos7安装Docker/","title":"Centos7安装Docker"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xuyitingg.github.io/2024/01/29/%E5%AE%89%E8%A3%85Kuboard-Spray/","path":"2024/01/29/安装Kuboard-Spray/","title":"安装Kuboard-Spray"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Centos7安装Docker | X</title>
+<title>安装Kuboard-Spray | X</title>
   
 
 
@@ -140,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%89%8D%E7%8E%B0%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E4%B8%8A%E5%8E%9F%E6%9C%89%E7%9A%84Docker"><span class="nav-number">1.</span> <span class="nav-text">1.安装之前现卸载系统上原有的Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E9%9C%80%E8%A6%81%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85yum-utils"><span class="nav-number">2.</span> <span class="nav-text">2.安装需要的安装包yum-utils</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">3.设置镜像仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85docker%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BC%95%E6%93%8E"><span class="nav-number">4.</span> <span class="nav-text">4.安装docker相关的引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%90%AF%E5%8A%A8docker"><span class="nav-number">5.</span> <span class="nav-text">5.启动docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8docker-version-%E6%9F%A5%E7%9C%8Bdockers%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8"><span class="nav-number">6.</span> <span class="nav-text">6.使用docker version 查看dockers是否启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8hello-world%E9%95%9C%E5%83%8F%E6%B5%8B%E8%AF%95docker"><span class="nav-number">7.</span> <span class="nav-text">7.使用hello-world镜像测试docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BA%E5%AD%98%E5%9C%A8%E9%82%A3%E4%BA%9Bdocker%E9%95%9C%E5%83%8F"><span class="nav-number">8.</span> <span class="nav-text">8.查看本机存在那些docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%8D%B8%E8%BD%BD"><span class="nav-number">9.</span> <span class="nav-text">9.卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F"><span class="nav-number">10.</span> <span class="nav-text">10.使用阿里云镜像加速</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9C%A8%E5%B7%B2%E8%A3%85%E5%A5%BDdocker%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">1.</span> <span class="nav-text">1.在已装好docker的服务器上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AF%BC%E5%85%A5%E6%9C%80%E6%96%B0%E8%B5%84%E6%BA%90%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">2.导入最新资源包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B7%BB%E5%8A%A0%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85%E8%AE%A1%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">3.添加集群安装计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9-%E4%BF%9D%E5%AD%98%E5%B9%B6%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4"><span class="nav-number">4.</span> <span class="nav-text">4.添加节点 保存并安装集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%88%90%E5%8A%9F%E5%90%8E%E4%BC%9A%E8%B7%B3%E8%BD%AC%E5%88%B0%E8%AE%BF%E9%97%AE%E9%9B%86%E7%BE%A4%E7%95%8C%E9%9D%A2"><span class="nav-number">5.</span> <span class="nav-text">5.成功后会跳转到访问集群界面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E8%8A%82%E7%82%B9%E8%A7%92%E8%89%B2"><span class="nav-number"></span> <span class="nav-text">三种节点角色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%8A%82%E7%82%B9-Master"><span class="nav-number">1.</span> <span class="nav-text">控制节点(Master):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E8%8A%82%E7%82%B9-Worker"><span class="nav-number">2.</span> <span class="nav-text">工作节点(Worker):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETCD%E8%8A%82%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">ETCD节点:</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +183,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/">
+    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/%E5%AE%89%E8%A3%85Kuboard-Spray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.png">
@@ -191,12 +196,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Centos7安装Docker | X">
+      <meta itemprop="name" content="安装Kuboard-Spray | X">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Centos7安装Docker
+          安装Kuboard-Spray
         </h1>
 
         <div class="post-meta-container">
@@ -214,7 +219,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-30 10:05:23" itemprop="dateModified" datetime="2024-01-30T10:05:23+08:00">2024-01-30</time>
+      <time title="修改时间：2024-01-30 10:05:17" itemprop="dateModified" datetime="2024-01-30T10:05:17+08:00">2024-01-30</time>
     </span>
 
   
@@ -226,46 +231,17 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>centos7镜像</p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
+    <div class="post-body" itemprop="articleBody"><h3 id="1-在已装好docker的服务器上"><a href="#1-在已装好docker的服务器上" class="headerlink" title="1.在已装好docker的服务器上"></a>1.在已装好docker的服务器上</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --privileged \</span><br><span class="line">  --restart=unless-stopped \</span><br><span class="line">  --name=kuboard-spray \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  -p 80:80/tcp \</span><br><span class="line">  -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">  -v ~/kuboard-spray-data:/data \</span><br><span class="line">  eipwork/kuboard-spray:latest-amd64</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-
-<h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装需要的安装包yum-utils"><a href="#2-安装需要的安装包yum-utils" class="headerlink" title="2.安装需要的安装包yum-utils"></a>2.安装需要的安装包yum-utils</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-设置镜像仓库地址"><a href="#3-设置镜像仓库地址" class="headerlink" title="3.设置镜像仓库地址"></a>3.设置镜像仓库地址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">&gt;--add-repo \</span><br><span class="line">&gt;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-安装docker相关的引擎"><a href="#4-安装docker相关的引擎" class="headerlink" title="4.安装docker相关的引擎"></a>4.安装docker相关的引擎</h3><p>更新yum软件包索引</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache fase </span><br></pre></td></tr></table></figure>
-
-<p>安装Docker Engine-Community</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-启动docker"><a href="#5-启动docker" class="headerlink" title="5.启动docker"></a>5.启动docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-使用docker-version-查看dockers是否启动"><a href="#6-使用docker-version-查看dockers是否启动" class="headerlink" title="6.使用docker version 查看dockers是否启动"></a>6.使用docker version 查看dockers是否启动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-使用hello-world镜像测试docker"><a href="#7-使用hello-world镜像测试docker" class="headerlink" title="7.使用hello-world镜像测试docker"></a>7.使用hello-world镜像测试docker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-查看本机存在那些docker镜像"><a href="#8-查看本机存在那些docker镜像" class="headerlink" title="8.查看本机存在那些docker镜像"></a>8.查看本机存在那些docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  images</span><br></pre></td></tr></table></figure>
-
-<h3 id="9-卸载"><a href="#9-卸载" class="headerlink" title="9.卸载"></a>9.卸载</h3><p>卸载依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum  remove docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
-
-<p>删除资源</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  /var/lib/docker    #/var/lib/docker 为docker默认的工作路径</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-使用阿里云镜像加速"><a href="#10-使用阿里云镜像加速" class="headerlink" title="10.使用阿里云镜像加速"></a>10.使用阿里云镜像加速</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://kskdqwg1.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-
+<p>在浏览器打开地址 <code>http://这台机器的IP</code>，输入用户名 <code>admin</code>，默认密码 <code>Kuboard123</code>，即可登录 Kuboard-Spray 界面</p>
+<h3 id="2-导入最新资源包"><a href="#2-导入最新资源包" class="headerlink" title="2.导入最新资源包"></a>2.导入最新资源包</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115454230.png" alt="image-20240118115454230"></p>
+<h3 id="3-添加集群安装计划"><a href="#3-添加集群安装计划" class="headerlink" title="3.添加集群安装计划"></a>3.添加集群安装计划</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115522093.png" alt="image-20240118115522093"></p>
+<h3 id="4-添加节点-保存并安装集群"><a href="#4-添加节点-保存并安装集群" class="headerlink" title="4.添加节点 保存并安装集群"></a>4.添加节点 保存并安装集群</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115703643.png" alt="image-20240118115703643"></p>
+<p>点击安装集群之后会跳转到日志界面详细内容</p>
+<h3 id="5-成功后会跳转到访问集群界面"><a href="#5-成功后会跳转到访问集群界面" class="headerlink" title="5.成功后会跳转到访问集群界面"></a>5.成功后会跳转到访问集群界面</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118115740425.png" alt="image-20240118115740425"></p>
+<h2 id="三种节点角色"><a href="#三种节点角色" class="headerlink" title="三种节点角色"></a>三种节点角色</h2><h3 id="控制节点-Master"><a href="#控制节点-Master" class="headerlink" title="控制节点(Master):"></a>控制节点(Master):</h3><p>负责管理整个集群的状态和控制集群中的各个工作节点。Master 节点上运行了多个关键组件，包括 <code>kube-apiserver</code>、<code>kube-controller-manager</code>、<code>kube-scheduler</code> 等。这些组件协同工作以确保集群的正常运行，接受 API 请求、调度工作负载并维护集群的期望状态。</p>
+<h3 id="工作节点-Worker"><a href="#工作节点-Worker" class="headerlink" title="工作节点(Worker):"></a>工作节点(Worker):</h3><p>负责运行容器化的应用程序和服务。它接收来自 Master 节点的任务，并负责创建、运行和监视容器。每个 Worker 节点上都会运行一个容器运行时（例如 Docker），以便在节点上启动和管理容器。</p>
+<h3 id="ETCD节点"><a href="#ETCD节点" class="headerlink" title="ETCD节点:"></a>ETCD节点:</h3><p>etcd 在 Kubernetes 中充当着集群的”大脑”，保存着集群的配置和状态信息。它是 Kubernetes 的关键基础设施组件之一，对于集群的稳定性和可靠性至关重要。</p>
 
     </div>
 
@@ -279,11 +255,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/" rel="prev" title="Docker安装mysql">
-                  <i class="fa fa-angle-left"></i> Docker安装mysql
+                <a href="/2024/01/29/%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/" rel="prev" title="挂载硬盘">
+                  <i class="fa fa-angle-left"></i> 挂载硬盘
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/01/29/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E9%9B%86%E6%88%90%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F/" rel="next" title="右键菜单集成打开方式">
+                  右键菜单集成打开方式 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
