@@ -204,7 +204,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-02-01 14:01:05 / 修改时间：14:20:30" itemprop="dateCreated datePublished" datetime="2024-02-01T14:01:05+08:00">2024-02-01</time>
+      <time title="创建时间：2024-02-01 14:01:05 / 修改时间：14:23:08" itemprop="dateCreated datePublished" datetime="2024-02-01T14:01:05+08:00">2024-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -226,48 +226,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>s</p>
-<h3 id="1-群晖共享文件挂载到Linux-NFS"><a href="#1-群晖共享文件挂载到Linux-NFS" class="headerlink" title="1.群晖共享文件挂载到Linux(NFS)"></a>1.群晖共享文件挂载到Linux(NFS)</h3><p>①.群晖登录admin用户</p>
-<p>②.打开控制面板-文件服务-启用NFS服务</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201140416021.png" alt="image-20240201140416021"></p>
-<p>③.设置共享文件夹</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201140533864.png" alt="image-20240201140533864"></p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201140611921.png" alt="image-20240201140611921"></p>
-<p>④.创建要挂载的路径</p>
-<p>在linux上执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/air/logs</span><br></pre></td></tr></table></figure>
-
-<p>⑤.执行挂载命令</p>
-<p>先安装nfs服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install nfs-common</span><br></pre></td></tr></table></figure>
-
-<p>执行挂载命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t nfs 群晖IP:/volume1/data /opt/air/logs/</span><br></pre></td></tr></table></figure>
-
-<p>⑥.执行df命令看挂载情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201140909163.png" alt="image-20240201140909163"></p>
-<h3 id="2-群晖共享文件挂载到windows-CIFS"><a href="#2-群晖共享文件挂载到windows-CIFS" class="headerlink" title="2.群晖共享文件挂载到windows(CIFS)"></a>2.群晖共享文件挂载到windows(CIFS)</h3><p>①.群晖登录admin用户</p>
-<p>②.打开控制面板-文件服务-启用SMB服务</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201141156795.png" alt="image-20240201141156795"></p>
-<p>③.设置共享文件夹</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201141250689.png" alt="image-20240201141250689"></p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201141405112.png" alt="image-20240201141405112"></p>
-<p>④.在windows上创建共享文件夹</p>
-<p>E:\Code\Two\pressure-csair-server\logs</p>
-<p>⑤.打开windows文件资源管理器 选择映射网络驱动器</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201141607500.png" alt="image-20240201141607500"></p>
-<p>⑥.输入群晖共享文件夹的路径</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201141733298.png" alt="image-20240201141733298"></p>
-<p>输入账号密码连接</p>
-<p>⑦.将映射的网络驱动器重定向到特定文件夹</p>
-<p>以管理员身份打开cmd</p>
-<p>使用命令创建符号链接(映射驱动器为Y)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /D E:\Code\Two\pressure-csair-server\logs Y:\</span><br></pre></td></tr></table></figure>
-
-<p>这样设置后 E:\Code\Two\pressure-csair-server\logs 文件夹实际上是指向群晖上的&#x2F;volume1&#x2F;d113共享文件夹&#x2F;logs 文件夹</p>
-
+          <h3 id="1-群晖共享文件挂载到Linux-NFS"><a href="#1-群晖共享文件挂载到Linux-NFS" class="headerlink" title="1.群晖共享文件挂载到Linux(NFS)"></a>1.群晖共享文件挂载到Linux(NFS)</h3><p>①.群晖登录admin用户</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/02/01/%E7%BE%A4%E6%99%96%E6%8C%82%E8%BD%BD/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -329,7 +296,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-01 14:20:34" itemprop="dateModified" datetime="2024-02-01T14:20:34+08:00">2024-02-01</time>
+      <time title="修改时间：2024-02-01 14:23:16" itemprop="dateModified" datetime="2024-02-01T14:23:16+08:00">2024-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -351,8 +318,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>s</p>
-<h3 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h3>
+          <h3 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h3>
       
     </div>
 
@@ -414,7 +380,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-01 14:20:45" itemprop="dateModified" datetime="2024-02-01T14:20:45+08:00">2024-02-01</time>
+      <time title="修改时间：2024-02-01 14:23:24" itemprop="dateModified" datetime="2024-02-01T14:23:24+08:00">2024-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -436,99 +402,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
+          <span id="more"></span>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.png">
-      <meta itemprop="name" content="Xu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="X">
-      <meta itemprop="description" content="学习">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | X">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/" class="post-title-link" itemprop="url">Docker安装mysql</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-01-29 16:03:52" itemprop="dateCreated datePublished" datetime="2024-01-29T16:03:52+08:00">2024-01-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-30 10:42:23" itemprop="dateModified" datetime="2024-01-30T10:42:23+08:00">2024-01-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1.拉取镜像"></a>1.拉取镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:latest									#默认拉取最新版</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -647,7 +522,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/">
+    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.png">
@@ -665,7 +540,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/" class="post-title-link" itemprop="url">Docker安装redis</a>
+          <a href="/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/" class="post-title-link" itemprop="url">Docker安装mysql</a>
         </h2>
 
         <div class="post-meta-container">
@@ -683,7 +558,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-30 10:42:25" itemprop="dateModified" datetime="2024-01-30T10:42:25+08:00">2024-01-30</time>
+      <time title="修改时间：2024-01-30 10:42:23" itemprop="dateModified" datetime="2024-01-30T10:42:23+08:00">2024-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -705,102 +580,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="redis设置密码"><a href="#redis设置密码" class="headerlink" title="redis设置密码"></a>redis设置密码</h3><h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4>
+          <h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1.拉取镜像"></a>1.拉取镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:latest									#默认拉取最新版</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.png">
-      <meta itemprop="name" content="Xu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="X">
-      <meta itemprop="description" content="学习">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | X">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/" class="post-title-link" itemprop="url">Linux设置yum源镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-01-29 16:03:52" itemprop="dateCreated datePublished" datetime="2024-01-29T16:03:52+08:00">2024-01-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-30 10:42:34" itemprop="dateModified" datetime="2024-01-30T10:42:34+08:00">2024-01-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-验证网络是否可以连接阿里云镜像"><a href="#1-验证网络是否可以连接阿里云镜像" class="headerlink" title="1.验证网络是否可以连接阿里云镜像"></a>1.验证网络是否可以连接阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/#more" rel="contents">
+              <a class="btn" href="/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -923,6 +706,98 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.png">
+      <meta itemprop="name" content="Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="X">
+      <meta itemprop="description" content="学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | X">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/" class="post-title-link" itemprop="url">Docker安装redis</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-29 16:03:52" itemprop="dateCreated datePublished" datetime="2024-01-29T16:03:52+08:00">2024-01-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-30 10:42:25" itemprop="dateModified" datetime="2024-01-30T10:42:25+08:00">2024-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="redis设置密码"><a href="#redis设置密码" class="headerlink" title="redis设置密码"></a>redis设置密码</h3><h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/01/29/Docker%E5%AE%89%E8%A3%85redis/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/IDEA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -985,6 +860,98 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/01/29/IDEA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://xuyitingg.github.io/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.png">
+      <meta itemprop="name" content="Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="X">
+      <meta itemprop="description" content="学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | X">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/" class="post-title-link" itemprop="url">Linux设置yum源镜像</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-29 16:03:52" itemprop="dateCreated datePublished" datetime="2024-01-29T16:03:52+08:00">2024-01-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-30 10:42:34" itemprop="dateModified" datetime="2024-01-30T10:42:34+08:00">2024-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-验证网络是否可以连接阿里云镜像"><a href="#1-验证网络是否可以连接阿里云镜像" class="headerlink" title="1.验证网络是否可以连接阿里云镜像"></a>1.验证网络是否可以连接阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Centos7安装Docker</title>
+    <url>/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/</url>
+    <content><![CDATA[<p>centos7镜像</p>
+<p><a href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装需要的安装包yum-utils"><a href="#2-安装需要的安装包yum-utils" class="headerlink" title="2.安装需要的安装包yum-utils"></a>2.安装需要的安装包yum-utils</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-设置镜像仓库地址"><a href="#3-设置镜像仓库地址" class="headerlink" title="3.设置镜像仓库地址"></a>3.设置镜像仓库地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">&gt;--add-repo \</span><br><span class="line">&gt;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-安装docker相关的引擎"><a href="#4-安装docker相关的引擎" class="headerlink" title="4.安装docker相关的引擎"></a>4.安装docker相关的引擎</h3><p>更新yum软件包索引</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache fase </span><br></pre></td></tr></table></figure>
+
+<p>安装Docker Engine-Community</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-启动docker"><a href="#5-启动docker" class="headerlink" title="5.启动docker"></a>5.启动docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-使用docker-version-查看dockers是否启动"><a href="#6-使用docker-version-查看dockers是否启动" class="headerlink" title="6.使用docker version 查看dockers是否启动"></a>6.使用docker version 查看dockers是否启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-使用hello-world镜像测试docker"><a href="#7-使用hello-world镜像测试docker" class="headerlink" title="7.使用hello-world镜像测试docker"></a>7.使用hello-world镜像测试docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-查看本机存在那些docker镜像"><a href="#8-查看本机存在那些docker镜像" class="headerlink" title="8.查看本机存在那些docker镜像"></a>8.查看本机存在那些docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker  images</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-卸载"><a href="#9-卸载" class="headerlink" title="9.卸载"></a>9.卸载</h3><p>卸载依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum  remove docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<p>删除资源</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf  /var/lib/docker    #/var/lib/docker 为docker默认的工作路径</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-使用阿里云镜像加速"><a href="#10-使用阿里云镜像加速" class="headerlink" title="10.使用阿里云镜像加速"></a>10.使用阿里云镜像加速</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://kskdqwg1.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Docker安装mysql</title>
     <url>/2024/01/29/Docker%E5%AE%89%E8%A3%85mysql/</url>
     <content><![CDATA[<h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1.拉取镜像"></a>1.拉取镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull mysql:latest									#默认拉取最新版</span><br></pre></td></tr></table></figure>
@@ -72,49 +120,34 @@
       </categories>
   </entry>
   <entry>
-    <title>Centos7安装Docker</title>
-    <url>/2024/01/29/Centos7%E5%AE%89%E8%A3%85Docker/</url>
-    <content><![CDATA[<p>centos7镜像</p>
-<p><a href="https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td">https://mirrors.aliyun.com/centos-vault/?spm=a2c6h.25603864.0.0.34563df62Fi3td</a></p>
+    <title>Git学习</title>
+    <url>/2024/01/29/Git/</url>
+    <content><![CDATA[<h5 id="Git官网"><a href="#Git官网" class="headerlink" title="Git官网"></a>Git官网</h5><p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
 <span id="more"></span>
 
-<h3 id="1-安装之前现卸载系统上原有的Docker"><a href="#1-安装之前现卸载系统上原有的Docker" class="headerlink" title="1.安装之前现卸载系统上原有的Docker"></a>1.安装之前现卸载系统上原有的Docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">&gt;docker-client \</span><br><span class="line">&gt;docker-client-latest \</span><br><span class="line">&gt;docker-common \</span><br><span class="line">&gt;docker-latest \</span><br><span class="line">&gt;docker-latest-logrotate \</span><br><span class="line">&gt;docker-logrotate \</span><br><span class="line">&gt;docker-engine</span><br></pre></td></tr></table></figure>
+<p>安装过程中 在到Adjusting your PATH environment步骤时</p>
+<p>选择Use Git from Git Bash only</p>
+<h4 id="安装完后进行基本设置"><a href="#安装完后进行基本设置" class="headerlink" title="安装完后进行基本设置"></a>安装完后进行基本设置</h4><p>设置用户名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.name  &#x27;github上注册的用户名&#x27;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-安装需要的安装包yum-utils"><a href="#2-安装需要的安装包yum-utils" class="headerlink" title="2.安装需要的安装包yum-utils"></a>2.安装需要的安装包yum-utils</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.email  &#x27;注册时候的邮箱&#x27;</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-设置镜像仓库地址"><a href="#3-设置镜像仓库地址" class="headerlink" title="3.设置镜像仓库地址"></a>3.设置镜像仓库地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">&gt;--add-repo \</span><br><span class="line">&gt;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="git连接远程分支"><a href="#git连接远程分支" class="headerlink" title="git连接远程分支"></a>git连接远程分支</h3><h4 id="1-clone"><a href="#1-clone" class="headerlink" title="1. clone"></a>1. clone</h4><p>如果是通过git clone https的可以直接</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-安装docker相关的引擎"><a href="#4-安装docker相关的引擎" class="headerlink" title="4.安装docker相关的引擎"></a>4.安装docker相关的引擎</h3><p>更新yum软件包索引</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache fase </span><br></pre></td></tr></table></figure>
+<p>查看已连接远程仓库信息</p>
+<h4 id="2-not-clone"><a href="#2-not-clone" class="headerlink" title="2. not clone"></a>2. not clone</h4><p>先初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 
-<p>安装Docker Engine-Community</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin https</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-启动docker"><a href="#5-启动docker" class="headerlink" title="5.启动docker"></a>5.启动docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-使用docker-version-查看dockers是否启动"><a href="#6-使用docker-version-查看dockers是否启动" class="headerlink" title="6.使用docker version 查看dockers是否启动"></a>6.使用docker version 查看dockers是否启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
 
-<h3 id="7-使用hello-world镜像测试docker"><a href="#7-使用hello-world镜像测试docker" class="headerlink" title="7.使用hello-world镜像测试docker"></a>7.使用hello-world镜像测试docker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="8-查看本机存在那些docker镜像"><a href="#8-查看本机存在那些docker镜像" class="headerlink" title="8.查看本机存在那些docker镜像"></a>8.查看本机存在那些docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker  images</span><br></pre></td></tr></table></figure>
 
-<h3 id="9-卸载"><a href="#9-卸载" class="headerlink" title="9.卸载"></a>9.卸载</h3><p>卸载依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum  remove docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
 
-<p>删除资源</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf  /var/lib/docker    #/var/lib/docker 为docker默认的工作路径</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-使用阿里云镜像加速"><a href="#10-使用阿里云镜像加速" class="headerlink" title="10.使用阿里云镜像加速"></a>10.使用阿里云镜像加速</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://kskdqwg1.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-]]></content>
+<h2 id="IDEA项目"><a href="#IDEA项目" class="headerlink" title="IDEA项目"></a>IDEA项目</h2>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -140,6 +173,44 @@
 <p>②.连接上后再输入密码</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auth 123456</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IDEA新建Maven项目</title>
+    <url>/2024/01/29/IDEA/</url>
+    <content><![CDATA[<p>ctrl+alt+shift+s</p>
+<span id="more"></span>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118154925442.png" alt="image-20240118154925442"></p>
+<h3 id="如果创建的Spring-Initialzr项目没有-iml文件"><a href="#如果创建的Spring-Initialzr项目没有-iml文件" class="headerlink" title="如果创建的Spring Initialzr项目没有.iml文件"></a>如果创建的Spring Initialzr项目没有.iml文件</h3><p>选择项目名 按两下ctrl 然后输入运行 mvn idea:module命令</p>
+<h3 id="解决Maven报错"><a href="#解决Maven报错" class="headerlink" title="解决Maven报错"></a>解决Maven报错</h3><p>Could not find artifact com.mysql:mysql-connector-j:pom:unknown in aliyunmaven</p>
+<p>直接给mysql-connector-j指定版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;8.0.33&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行时报错"><a href="#运行时报错" class="headerlink" title="运行时报错"></a>运行时报错</h3><h4 id="1-Invalid-value-type-for-attribute-‘factoryBeanObjectType’-java-lang-String"><a href="#1-Invalid-value-type-for-attribute-‘factoryBeanObjectType’-java-lang-String" class="headerlink" title="1.Invalid value type for attribute ‘factoryBeanObjectType’: java.lang.String"></a>1.Invalid value type for attribute ‘factoryBeanObjectType’: java.lang.String</h4><p>是由于mybatis依赖版本错误</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.0.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Host-‘host-docker-internal‘-is-not-allowed-to-connect-to-this-MySQL-server"><a href="#2-Host-‘host-docker-internal‘-is-not-allowed-to-connect-to-this-MySQL-server" class="headerlink" title="2.Host ‘host.docker.internal‘ is not allowed to connect to this MySQL server"></a>2.Host ‘host.docker.internal‘ is not allowed to connect to this MySQL server</h4><p>是由于搭建了docker环境 把项目放到docker环境内部了 和主机mysql隔离了 所以当docker项目访问mysql时 访问性质是局域网访问</p>
+<p>解决方案：用navicat</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240130163607435.png" alt="image-20240130163607435"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240130163701000.png" alt="image-20240130163701000"></p>
+<p>然后刷新mysql权限</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240130163859265.png" alt="image-20240130163859265"></p>
+<h4 id="3-Could-not-find-artifact-org-springframework-cloud-spring-cloud-starter-netflix-eureka-client-pom"><a href="#3-Could-not-find-artifact-org-springframework-cloud-spring-cloud-starter-netflix-eureka-client-pom" class="headerlink" title="3.Could not find artifact org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:pom"></a>3.Could not find artifact org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:pom</h4><p>version不对</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-报错Error-creating-bean-with-name-‘scopedTarget-eurekaClient‘-defined-in-class"><a href="#4-报错Error-creating-bean-with-name-‘scopedTarget-eurekaClient‘-defined-in-class" class="headerlink" title="4.报错Error creating bean with name ‘scopedTarget.eurekaClient‘ defined in class"></a>4.报错Error creating bean with name ‘scopedTarget.eurekaClient‘ defined in class</h4><p>是由于spring-cloud-starter-netflix-<a href="https://so.csdn.net/so/search?q=eureka&spm=1001.2101.3001.7020">eureka</a>-client和spring-boot-starter-web两个依赖的时候 会出现冲突 由于代码里面 我用了Spring MVC的Rest方式 而没有用spring-cloud-starter-netflix-eureka-client本身包含Jesery Rest方式 导致出现下面的BUG</p>
+<p> 解决办法：</p>
+<p>在eureka依赖里面排除Jersey，用SpringMVC Rest方式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"> </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">	&lt;!-- 排除Jersey，用SpringMVC Rest方式--&gt;</span><br><span class="line">	&lt;exclusions&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;com.sun.jersey&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;jersey-client&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;com.sun.jersey&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;jersey-core&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;com.sun.jersey.contribs&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;jersey-apache-client4&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">	&lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-Servlet-service-for-servlet-dispatcherServlet-in-context-with-path-threw-exception-Request-processing-failed-org-springframework-web-client-ResourceAccessException-I-O-error-on-GET-request-for-“http-userservice-user-1“-userservice-with-root-cause"><a href="#5-Servlet-service-for-servlet-dispatcherServlet-in-context-with-path-threw-exception-Request-processing-failed-org-springframework-web-client-ResourceAccessException-I-O-error-on-GET-request-for-“http-userservice-user-1“-userservice-with-root-cause" class="headerlink" title="5.Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I&#x2F;O error on GET request for “http://userservice/user/1“: userservice] with root cause"></a>5.Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I&#x2F;O error on GET request for “<a href="http://userservice/user/1">http://userservice/user/1</a>“: userservice] with root cause</h4><h4 id="java-net-UnknownHostException-userservice"><a href="#java-net-UnknownHostException-userservice" class="headerlink" title="java.net.UnknownHostException: userservice"></a>java.net.UnknownHostException: userservice</h4><p>这是由于忘记删service&#x2F;impl里面的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//RestTemplate支持多种方式的远程调用</span><br><span class="line">RestTemplate template = new RestTemplate();</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-如果报错Connection-refused-connect"><a href="#6-如果报错Connection-refused-connect" class="headerlink" title="6.如果报错Connection refused: connect"></a>6.如果报错Connection refused: connect</h4><p>说明所有的微服务都挂掉了</p>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -179,77 +250,7 @@
   <entry>
     <title>Markdown</title>
     <url>/2024/01/30/Markdown/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Git学习</title>
-    <url>/2024/01/29/Git/</url>
-    <content><![CDATA[<h5 id="Git官网"><a href="#Git官网" class="headerlink" title="Git官网"></a>Git官网</h5><p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
-<span id="more"></span>
-
-<p>安装过程中 在到Adjusting your PATH environment步骤时</p>
-<p>选择Use Git from Git Bash only</p>
-<h4 id="安装完后进行基本设置"><a href="#安装完后进行基本设置" class="headerlink" title="安装完后进行基本设置"></a>安装完后进行基本设置</h4><p>设置用户名：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.name  &#x27;github上注册的用户名&#x27;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git  config -- global  user.email  &#x27;注册时候的邮箱&#x27;</span><br></pre></td></tr></table></figure>
-
-<h3 id="git连接远程分支"><a href="#git连接远程分支" class="headerlink" title="git连接远程分支"></a>git连接远程分支</h3><h4 id="1-clone"><a href="#1-clone" class="headerlink" title="1. clone"></a>1. clone</h4><p>如果是通过git clone https的可以直接</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<p>查看已连接远程仓库信息</p>
-<h4 id="2-not-clone"><a href="#2-not-clone" class="headerlink" title="2. not clone"></a>2. not clone</h4><p>先初始化</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin https</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="IDEA项目"><a href="#IDEA项目" class="headerlink" title="IDEA项目"></a>IDEA项目</h2>]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>IDEA新建Maven项目</title>
-    <url>/2024/01/29/IDEA/</url>
-    <content><![CDATA[<p>ctrl+alt+shift+s</p>
-<span id="more"></span>
-
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240118154925442.png" alt="image-20240118154925442"></p>
-<h3 id="如果创建的Spring-Initialzr项目没有-iml文件"><a href="#如果创建的Spring-Initialzr项目没有-iml文件" class="headerlink" title="如果创建的Spring Initialzr项目没有.iml文件"></a>如果创建的Spring Initialzr项目没有.iml文件</h3><p>选择项目名 按两下ctrl 然后输入运行 mvn idea:module命令</p>
-<h3 id="解决Maven报错"><a href="#解决Maven报错" class="headerlink" title="解决Maven报错"></a>解决Maven报错</h3><p>Could not find artifact com.mysql:mysql-connector-j:pom:unknown in aliyunmaven</p>
-<p>直接给mysql-connector-j指定版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;8.0.33&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行时报错"><a href="#运行时报错" class="headerlink" title="运行时报错"></a>运行时报错</h3><h4 id="1-Invalid-value-type-for-attribute-‘factoryBeanObjectType’-java-lang-String"><a href="#1-Invalid-value-type-for-attribute-‘factoryBeanObjectType’-java-lang-String" class="headerlink" title="1.Invalid value type for attribute ‘factoryBeanObjectType’: java.lang.String"></a>1.Invalid value type for attribute ‘factoryBeanObjectType’: java.lang.String</h4><p>是由于mybatis依赖版本错误</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.0.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-Host-‘host-docker-internal‘-is-not-allowed-to-connect-to-this-MySQL-server"><a href="#2-Host-‘host-docker-internal‘-is-not-allowed-to-connect-to-this-MySQL-server" class="headerlink" title="2.Host ‘host.docker.internal‘ is not allowed to connect to this MySQL server"></a>2.Host ‘host.docker.internal‘ is not allowed to connect to this MySQL server</h4><p>是由于搭建了docker环境 把项目放到docker环境内部了 和主机mysql隔离了 所以当docker项目访问mysql时 访问性质是局域网访问</p>
-<p>解决方案：用navicat</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240130163607435.png" alt="image-20240130163607435"></p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240130163701000.png" alt="image-20240130163701000"></p>
-<p>然后刷新mysql权限</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240130163859265.png" alt="image-20240130163859265"></p>
-<h4 id="3-Could-not-find-artifact-org-springframework-cloud-spring-cloud-starter-netflix-eureka-client-pom"><a href="#3-Could-not-find-artifact-org-springframework-cloud-spring-cloud-starter-netflix-eureka-client-pom" class="headerlink" title="3.Could not find artifact org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:pom"></a>3.Could not find artifact org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:pom</h4><p>version不对</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-报错Error-creating-bean-with-name-‘scopedTarget-eurekaClient‘-defined-in-class"><a href="#4-报错Error-creating-bean-with-name-‘scopedTarget-eurekaClient‘-defined-in-class" class="headerlink" title="4.报错Error creating bean with name ‘scopedTarget.eurekaClient‘ defined in class"></a>4.报错Error creating bean with name ‘scopedTarget.eurekaClient‘ defined in class</h4><p>是由于spring-cloud-starter-netflix-<a href="https://so.csdn.net/so/search?q=eureka&spm=1001.2101.3001.7020">eureka</a>-client和spring-boot-starter-web两个依赖的时候 会出现冲突 由于代码里面 我用了Spring MVC的Rest方式 而没有用spring-cloud-starter-netflix-eureka-client本身包含Jesery Rest方式 导致出现下面的BUG</p>
-<p> 解决办法：</p>
-<p>在eureka依赖里面排除Jersey，用SpringMVC Rest方式</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"> </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">	&lt;!-- 排除Jersey，用SpringMVC Rest方式--&gt;</span><br><span class="line">	&lt;exclusions&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;com.sun.jersey&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;jersey-client&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;com.sun.jersey&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;jersey-core&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;com.sun.jersey.contribs&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;jersey-apache-client4&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">	&lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-Servlet-service-for-servlet-dispatcherServlet-in-context-with-path-threw-exception-Request-processing-failed-org-springframework-web-client-ResourceAccessException-I-O-error-on-GET-request-for-“http-userservice-user-1“-userservice-with-root-cause"><a href="#5-Servlet-service-for-servlet-dispatcherServlet-in-context-with-path-threw-exception-Request-processing-failed-org-springframework-web-client-ResourceAccessException-I-O-error-on-GET-request-for-“http-userservice-user-1“-userservice-with-root-cause" class="headerlink" title="5.Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I&#x2F;O error on GET request for “http://userservice/user/1“: userservice] with root cause"></a>5.Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I&#x2F;O error on GET request for “<a href="http://userservice/user/1">http://userservice/user/1</a>“: userservice] with root cause</h4><h4 id="java-net-UnknownHostException-userservice"><a href="#java-net-UnknownHostException-userservice" class="headerlink" title="java.net.UnknownHostException: userservice"></a>java.net.UnknownHostException: userservice</h4><p>这是由于忘记删service&#x2F;impl里面的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//RestTemplate支持多种方式的远程调用</span><br><span class="line">RestTemplate template = new RestTemplate();</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-如果报错Connection-refused-connect"><a href="#6-如果报错Connection-refused-connect" class="headerlink" title="6.如果报错Connection refused: connect"></a>6.如果报错Connection refused: connect</h4><p>说明所有的微服务都挂掉了</p>
+    <content><![CDATA[<span id="more"></span>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -483,8 +484,7 @@
   <entry>
     <title>微服务</title>
     <url>/2024/01/30/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<p>s</p>
-<h3 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h3>]]></content>
+    <content><![CDATA[<h3 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h3>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -515,19 +515,11 @@
       </categories>
   </entry>
   <entry>
-    <title>重装EXSI系统</title>
-    <url>/2024/01/29/%E9%87%8D%E8%A3%85EXSI%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>群晖挂载</title>
     <url>/2024/02/01/%E7%BE%A4%E6%99%96%E6%8C%82%E8%BD%BD/</url>
-    <content><![CDATA[<p>s</p>
-<h3 id="1-群晖共享文件挂载到Linux-NFS"><a href="#1-群晖共享文件挂载到Linux-NFS" class="headerlink" title="1.群晖共享文件挂载到Linux(NFS)"></a>1.群晖共享文件挂载到Linux(NFS)</h3><p>①.群晖登录admin用户</p>
+    <content><![CDATA[<h3 id="1-群晖共享文件挂载到Linux-NFS"><a href="#1-群晖共享文件挂载到Linux-NFS" class="headerlink" title="1.群晖共享文件挂载到Linux(NFS)"></a>1.群晖共享文件挂载到Linux(NFS)</h3><p>①.群晖登录admin用户</p>
+<span id="more"></span>
+
 <p>②.打开控制面板-文件服务-启用NFS服务</p>
 <p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240201140416021.png" alt="image-20240201140416021"></p>
 <p>③.设置共享文件夹</p>
@@ -567,6 +559,15 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mklink /D E:\Code\Two\pressure-csair-server\logs Y:\</span><br></pre></td></tr></table></figure>
 
 <p>这样设置后 E:\Code\Two\pressure-csair-server\logs 文件夹实际上是指向群晖上的&#x2F;volume1&#x2F;d113共享文件夹&#x2F;logs 文件夹</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>重装EXSI系统</title>
+    <url>/2024/01/29/%E9%87%8D%E8%A3%85EXSI%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<span id="more"></span>
 ]]></content>
       <categories>
         <category>笔记</category>
