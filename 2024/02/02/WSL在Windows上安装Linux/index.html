@@ -26,16 +26,16 @@
 <meta property="og:site_name" content="X">
 <meta property="og:description" content="g 环境说明Windows11 + WSL2 + Ubuntu22.04 开启WSL功能控制面板-程序-启用或关闭Windows功能  开启后需要重启电脑 如果没有该功能选项 管理员启动cmd 输入命令分别开启WSL和虚拟机平台功能 开启完后重启电脑 1dism.exe &#x2F;online &#x2F;enable-feature &#x2F;featurename:Microsoft-Windows-Subsystem">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100522612.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100740648.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101045165.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101156604.png">
+<meta property="og:image" content="https://xuyitingg.github.io/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20240202100522612.png">
+<meta property="og:image" content="https://xuyitingg.github.io/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20240202100740648.png">
+<meta property="og:image" content="https://xuyitingg.github.io/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20240202101045165.png">
+<meta property="og:image" content="https://xuyitingg.github.io/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20240202101156604.png">
 <meta property="article:published_time" content="2024-02-02T02:03:35.000Z">
 <meta property="article:modified_time" content="2024-02-02T02:12:36.549Z">
 <meta property="article:author" content="Xu">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100522612.png">
+<meta name="twitter:image" content="https://xuyitingg.github.io/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20240202100522612.png">
 
 
 <link rel="canonical" href="https://xuyitingg.github.io/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/">
@@ -237,7 +237,7 @@
     <div class="post-body" itemprop="articleBody"><p>g</p>
 <h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>Windows11 + WSL2 + Ubuntu22.04</p>
 <h3 id="开启WSL功能"><a href="#开启WSL功能" class="headerlink" title="开启WSL功能"></a>开启WSL功能</h3><p>控制面板-程序-启用或关闭Windows功能</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100522612.png" alt="image-20240202100522612"></p>
+<p><img src="/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100522612.png" alt="image-20240202100522612"></p>
 <p>开启后需要重启电脑</p>
 <p>如果没有该功能选项</p>
 <p>管理员启动cmd 输入命令分别开启WSL和虚拟机平台功能 开启完后重启电脑</p>
@@ -247,7 +247,7 @@
 
 <h3 id="安装Ubuntu22-04"><a href="#安装Ubuntu22-04" class="headerlink" title="安装Ubuntu22.04"></a>安装Ubuntu22.04</h3><p>管理员身份打开cmd</p>
 <p>输入wsl –list –online以显示可用分发版列表</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100740648.png" alt="image-20240202100740648"></p>
+<p><img src="/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202100740648.png" alt="image-20240202100740648"></p>
 <p>输入wsl.exe –install Ubuntu-22.04安装</p>
 <p>安装完后双击运行Ubuntu 22.04.3 LTS</p>
 <p>如果报错WslRegisterDistribution failed with error: 0x800701bc</p>
@@ -255,9 +255,9 @@
 <p>在cmd中输入wsl –update升级</p>
 <p>升级完后再双击运行Ubuntu 22.04.3 LTS</p>
 <p>根据提示输入账号密码</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101045165.png" alt="image-20240202101045165"></p>
+<p><img src="/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101045165.png" alt="image-20240202101045165"></p>
 <p>WSL的好处是方便再Windows文件资源管理器下查看和传输Linux子系统文件</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101156604.png" alt="image-20240202101156604"></p>
+<p><img src="/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101156604.png" alt="image-20240202101156604"></p>
 
     </div>
 
