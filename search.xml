@@ -228,20 +228,57 @@
   <entry>
     <title>Linux</title>
     <url>/2024/02/27/Linux/</url>
-    <content><![CDATA[<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="1-安装VMware-Workstation-Pro"><a href="#1-安装VMware-Workstation-Pro" class="headerlink" title="1.安装VMware Workstation Pro"></a>1.安装VMware Workstation Pro</h3><p>官网：<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</a></p>
+    <content><![CDATA[<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="1-安装VMware-Workstation-Pro"><a href="#1-安装VMware-Workstation-Pro" class="headerlink" title="1.安装VMware Workstation Pro"></a>1.安装VMware Workstation Pro</h2><p>官网：<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</a></p>
 <p>安装完之后可以搜索VMware Workstation 17 Pro密钥大全获取密钥</p>
 <p>卸载不干净下载ccleaner：<a href="https://www.ccleaner.com/zh-cn/ccleaner/download">https://www.ccleaner.com/zh-cn/ccleaner/download</a></p>
 <span id="more"></span>
 
-<h3 id="2-安装iso文件"><a href="#2-安装iso文件" class="headerlink" title="2.安装iso文件"></a>2.安装iso文件</h3><p>centos7镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/">https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/</a></p>
+<h2 id="2-安装iso文件"><a href="#2-安装iso文件" class="headerlink" title="2.安装iso文件"></a>2.安装iso文件</h2><p>centos7镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/">https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/</a></p>
 <p>ubuntu镜像：<a href="http://mirrors.aliyun.com/ubuntu-releases/">http://mirrors.aliyun.com/ubuntu-releases/</a></p>
-<h3 id="3-安装MobaXterm"><a href="#3-安装MobaXterm" class="headerlink" title="3.安装MobaXterm"></a>3.安装MobaXterm</h3><p>官网：<a href="https://mobaxterm.mobatek.net/">https://mobaxterm.mobatek.net/</a></p>
-<h3 id="4-安装Ubuntu系统"><a href="#4-安装Ubuntu系统" class="headerlink" title="4.安装Ubuntu系统"></a>4.安装Ubuntu系统</h3><p>首先打开SGX</p>
+<h2 id="3-安装MobaXterm"><a href="#3-安装MobaXterm" class="headerlink" title="3.安装MobaXterm"></a>3.安装MobaXterm</h2><p>官网：<a href="https://mobaxterm.mobatek.net/">https://mobaxterm.mobatek.net/</a></p>
+<h2 id="4-安装Ubuntu22-04系统"><a href="#4-安装Ubuntu22-04系统" class="headerlink" title="4.安装Ubuntu22.04系统"></a>4.安装Ubuntu22.04系统</h2><p>首先打开SGX</p>
 <p>直接安装可能会出现卡在图标界面 需要选中第二个选项-E-修改quiet splash nouveau;modeset&#x3D;0</p>
 <p>然后根据步骤安装</p>
-<h4 id="需要安装一些软件包后续会用"><a href="#需要安装一些软件包后续会用" class="headerlink" title="需要安装一些软件包后续会用"></a>需要安装一些软件包后续会用</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install net-tools				//ifconfig</span><br><span class="line">apt install vim						</span><br><span class="line">apt install nfs-common				//nfs</span><br><span class="line">apt install -y gparted				//分区</span><br></pre></td></tr></table></figure>
+<h3 id="需要安装一些软件包后续会用"><a href="#需要安装一些软件包后续会用" class="headerlink" title="需要安装一些软件包后续会用"></a>需要安装一些软件包后续会用</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install net-tools				//ifconfig</span><br><span class="line">apt install vim						</span><br><span class="line">apt install nfs-common				//nfs</span><br><span class="line">apt install -y gparted				//分区</span><br></pre></td></tr></table></figure>
 
-<h4 id="合盘"><a href="#合盘" class="headerlink" title="合盘"></a>合盘</h4><p>先安装LVM(逻辑卷管理)</p>
+<h3 id="合并硬盘（用mergerfs）"><a href="#合并硬盘（用mergerfs）" class="headerlink" title="合并硬盘（用mergerfs）"></a>合并硬盘（用mergerfs）</h3><p>先安装mergerfs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install mergerfs</span><br></pre></td></tr></table></figure>
+
+<p>lsblk 列出块设备以及分区信息</p>
+<p>fdisk -l 查看NAS服务器下的硬盘情况</p>
+<p>blkid 查看要合并的硬盘的UUID（记录UUID和TYPE）</p>
+<p>准备挂载点 计划挂载在&#x2F;mnt目录下（三块硬盘 四个分区）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /mnt/disk&#123;1,2,3,4&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建合并分区挂载点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /mnt/merged</span><br></pre></td></tr></table></figure>
+
+<p>将分区信息写到&#x2F;etc&#x2F;fstab文件中让它永久挂载</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nano /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p>添加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UUID=E4A8-FBE6  /mnt/disk1      vfat    defaults        0       2</span><br><span class="line">UUID=50e6e8dc-e4a0-489f-b726-474d46979d6e       /mnt/disk2      ext4    defaults        0       2</span><br><span class="line">UUID=7508CAB21E5B0DE0   /mnt/disk3      ntfs    defaults        0       2</span><br><span class="line">UUID=3D28CF3345A09A7D   /mnt/disk4      ntfs    defaults        0       2</span><br><span class="line"></span><br><span class="line">/mnt/disk*      /mnt/merged     fuse.mergerfs defaults,allow_other,minfreespace=10G,fsname=mergerfs,ignorepponrename=true 0 0</span><br></pre></td></tr></table></figure>
+
+<p>对磁盘挂载分区进行更新挂载</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount -a</span><br></pre></td></tr></table></figure>
+
+<p>查看挂载情况</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">df -TH</span><br></pre></td></tr></table></figure>
+
+<h4 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h4><p>如果是先用LVM2把两块硬盘合并过的需要先执行以下命令</p>
+<p>删除逻辑卷</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lvremove /dev/mygroup/logicalgroup</span><br></pre></td></tr></table></figure>
+
+<p>删除卷组</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vgremove mygroup</span><br></pre></td></tr></table></figure>
+
+<p>清除磁盘元数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wipefs -a /dev/sda</span><br><span class="line">wipefs -a /dev/nvme1n1</span><br></pre></td></tr></table></figure>
+
+<p>之后这两块硬盘都被清除了</p>
+<p>在gparted上看到这两块硬盘都是处于UNKONWN状态</p>
+<p>Partition-new给这两块硬盘分别创建分区 选ntfs格式</p>
+<h3 id="合并未挂载的硬盘（用LVM2）"><a href="#合并未挂载的硬盘（用LVM2）" class="headerlink" title="合并未挂载的硬盘（用LVM2）"></a>合并未挂载的硬盘（用LVM2）</h3><p>先安装LVM(逻辑卷管理)</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install lvm2</span><br></pre></td></tr></table></figure>
 
 <p>创建物理卷(PV)</p>
@@ -262,94 +299,38 @@
 <p>挂载分区到&#x2F;data目录</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount /dev/lvm_data/vg_data /data</span><br></pre></td></tr></table></figure>
 
-<h4 id="免密转换root用户"><a href="#免密转换root用户" class="headerlink" title="免密转换root用户"></a>免密转换root用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">groupadd wheel</span><br><span class="line">usermod -G wheel username</span><br><span class="line">vim /etc/pam.d/su					//打开trust</span><br></pre></td></tr></table></figure>
+<h3 id="免密转换root用户"><a href="#免密转换root用户" class="headerlink" title="免密转换root用户"></a>免密转换root用户</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">groupadd wheel</span><br><span class="line">usermod -G wheel username</span><br><span class="line">vim /etc/pam.d/su					//打开trust</span><br></pre></td></tr></table></figure>
 
-<h4 id="打开ssh服务"><a href="#打开ssh服务" class="headerlink" title="打开ssh服务"></a>打开ssh服务</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br><span class="line">service ssh start</span><br><span class="line">vim /etc/ssh/sshd_config		//打开PermitRootLogin yes</span><br><span class="line">							   //PasswordAuthentication yes</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+<h3 id="打开ssh服务"><a href="#打开ssh服务" class="headerlink" title="打开ssh服务"></a>打开ssh服务</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br><span class="line">service ssh start</span><br><span class="line">vim /etc/ssh/sshd_config		//打开PermitRootLogin yes</span><br><span class="line">							   //PasswordAuthentication yes</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
 
-<h4 id="配置静态ip"><a href="#配置静态ip" class="headerlink" title="配置静态ip"></a>配置静态ip</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/netplan/01-network-manager-all.yaml</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="配置静态ip"><a href="#配置静态ip" class="headerlink" title="配置静态ip"></a>配置静态ip</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/netplan/01-network-manager-all.yaml</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netplan apply</span><br></pre></td></tr></table></figure>
 
+<h2 id="5-安装CentOS7系统"><a href="#5-安装CentOS7系统" class="headerlink" title="5.安装CentOS7系统"></a>5.安装CentOS7系统</h2><h3 id="安装阿里云镜像"><a href="#安装阿里云镜像" class="headerlink" title="安装阿里云镜像"></a>安装阿里云镜像</h3><h4 id="验证网络是否可以连接阿里云镜像"><a href="#验证网络是否可以连接阿里云镜像" class="headerlink" title="验证网络是否可以连接阿里云镜像"></a>验证网络是否可以连接阿里云镜像</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
 
+<h4 id="安装wget包"><a href="#安装wget包" class="headerlink" title="安装wget包"></a>安装wget包</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
 
-<h3 id="1-验证网络是否可以连接阿里云镜像"><a href="#1-验证网络是否可以连接阿里云镜像" class="headerlink" title="1.验证网络是否可以连接阿里云镜像"></a>1.验证网络是否可以连接阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装wget包"><a href="#2-安装wget包" class="headerlink" title="2.安装wget包"></a>2.安装wget包</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-删除原yum源"><a href="#3-删除原yum源" class="headerlink" title="3.删除原yum源"></a>3.删除原yum源</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br></pre></td></tr></table></figure>
+<h4 id="删除原yum源"><a href="#删除原yum源" class="headerlink" title="删除原yum源"></a>删除原yum源</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf /etc/yum.repos.d/*</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-下载阿里云Centos-7-repo文件"><a href="#4-下载阿里云Centos-7-repo文件" class="headerlink" title="4.下载阿里云Centos-7.repo文件"></a>4.下载阿里云Centos-7.repo文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+<h4 id="下载阿里云Centos-7-repo文件"><a href="#下载阿里云Centos-7-repo文件" class="headerlink" title="下载阿里云Centos-7.repo文件"></a>下载阿里云Centos-7.repo文件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-清除yum缓存"><a href="#5-清除yum缓存" class="headerlink" title="5.清除yum缓存"></a>5.清除yum缓存</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
+<h4 id="清除yum缓存"><a href="#清除yum缓存" class="headerlink" title="清除yum缓存"></a>清除yum缓存</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-缓存阿里云镜像"><a href="#6-缓存阿里云镜像" class="headerlink" title="6.缓存阿里云镜像"></a>6.缓存阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+<h4 id="缓存阿里云镜像"><a href="#缓存阿里云镜像" class="headerlink" title="缓存阿里云镜像"></a>缓存阿里云镜像</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
 
-<h3 id="7-查看yum源信息"><a href="#7-查看yum源信息" class="headerlink" title="7.查看yum源信息"></a>7.查看yum源信息</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
+<h4 id="查看yum源信息"><a href="#查看yum源信息" class="headerlink" title="查看yum源信息"></a>查看yum源信息</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
 
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-如果直接yum-install-wget失败-先执行"><a href="#1-如果直接yum-install-wget失败-先执行" class="headerlink" title="1.如果直接yum install wget失败 先执行"></a>1.如果直接yum install wget失败 先执行</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-Umount出问题"><a href="#2-Umount出问题" class="headerlink" title="2.Umount出问题"></a>2.Umount出问题</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wipefs -a /dev/sda</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Linux</title>
-    <url>/2024/02/04/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h3 id="1-安装VMware-Workstation-Pro"><a href="#1-安装VMware-Workstation-Pro" class="headerlink" title="1.安装VMware Workstation Pro"></a>1.安装VMware Workstation Pro</h3><p>官网：<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</a></p>
-<p>安装完之后可以搜索VMware Workstation 17 Pro密钥大全获取密钥</p>
-<p>卸载不干净下载ccleaner：<a href="https://www.ccleaner.com/zh-cn/ccleaner/download">https://www.ccleaner.com/zh-cn/ccleaner/download</a></p>
-<h3 id="2-安装iso文件"><a href="#2-安装iso文件" class="headerlink" title="2.安装iso文件"></a>2.安装iso文件</h3><p>centos7镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/">https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/</a></p>
-<p>ubuntu镜像：<a href="http://mirrors.aliyun.com/ubuntu-releases/">http://mirrors.aliyun.com/ubuntu-releases/</a></p>
-<h3 id="3-安装MobaXterm"><a href="#3-安装MobaXterm" class="headerlink" title="3.安装MobaXterm"></a>3.安装MobaXterm</h3><p>官网：<a href="https://mobaxterm.mobatek.net/">https://mobaxterm.mobatek.net/</a></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Linux设置yum源镜像</title>
-    <url>/2024/01/29/Linux%E8%AE%BE%E7%BD%AEyum%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90/</url>
-    <content><![CDATA[<h3 id="1-验证网络是否可以连接阿里云镜像"><a href="#1-验证网络是否可以连接阿里云镜像" class="headerlink" title="1.验证网络是否可以连接阿里云镜像"></a>1.验证网络是否可以连接阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ping mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h3 id="2-安装wget包"><a href="#2-安装wget包" class="headerlink" title="2.安装wget包"></a>2.安装wget包</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-删除原yum源"><a href="#3-删除原yum源" class="headerlink" title="3.删除原yum源"></a>3.删除原yum源</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf /etc/yum.repos.d/*</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-下载阿里云Centos-7-repo文件"><a href="#4-下载阿里云Centos-7-repo文件" class="headerlink" title="4.下载阿里云Centos-7.repo文件"></a>4.下载阿里云Centos-7.repo文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-清除yum缓存"><a href="#5-清除yum缓存" class="headerlink" title="5.清除yum缓存"></a>5.清除yum缓存</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-缓存阿里云镜像"><a href="#6-缓存阿里云镜像" class="headerlink" title="6.缓存阿里云镜像"></a>6.缓存阿里云镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-查看yum源信息"><a href="#7-查看yum源信息" class="headerlink" title="7.查看yum源信息"></a>7.查看yum源信息</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-如果直接yum-install-wget失败-先执行"><a href="#1-如果直接yum-install-wget失败-先执行" class="headerlink" title="1.如果直接yum install wget失败 先执行"></a>1.如果直接yum install wget失败 先执行</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>如果直接yum install wget失败 先执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Markdown</title>
-    <url>/2024/01/30/Markdown/</url>
-    <content><![CDATA[<span id="more"></span>
+<p>Umount出问题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wipefs -a /dev/sda</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -419,22 +400,6 @@
 <h3 id="2-输入list-disk-显示磁盘列表"><a href="#2-输入list-disk-显示磁盘列表" class="headerlink" title="2.输入list disk 显示磁盘列表"></a>2.输入list disk 显示磁盘列表</h3><h3 id="3-sel-dis-3-选中U盘"><a href="#3-sel-dis-3-选中U盘" class="headerlink" title="3.sel dis 3 选中U盘"></a>3.sel dis 3 选中U盘</h3><h3 id="4-clean"><a href="#4-clean" class="headerlink" title="4.clean"></a>4.clean</h3><h3 id="5-cre-par-pri-新建分区"><a href="#5-cre-par-pri-新建分区" class="headerlink" title="5.cre par pri 新建分区"></a>5.cre par pri 新建分区</h3><h3 id="6-format-fs-ntfs-quick-格式化"><a href="#6-format-fs-ntfs-quick-格式化" class="headerlink" title="6.format fs&#x3D;ntfs quick 格式化"></a>6.format fs&#x3D;ntfs quick 格式化</h3><h3 id="7-assign-letter-x"><a href="#7-assign-letter-x" class="headerlink" title="7.assign letter  x"></a>7.assign letter  x</h3>]]></content>
   </entry>
   <entry>
-    <title>改Win10右键菜单</title>
-    <url>/2024/01/29/WIN11%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%94%B9%E5%9B%9EWIN10/</url>
-    <content><![CDATA[<h3 id="直接输命令"><a href="#直接输命令" class="headerlink" title="直接输命令"></a>直接输命令</h3><p>WIN+X选择Windows终端(管理员)进入终端</p>
-<span id="more"></span>
-
-<p>输出这段代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reg add &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot; /f /ve</span><br></pre></td></tr></table></figure>
-
-<p>打开任务管理器</p>
-<p>右键Windows资源管理器-重新启动</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>WSL在Windows上安装Linux</title>
     <url>/2024/02/02/WSL%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Linux/</url>
     <content><![CDATA[<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>Windows11 + WSL2 + Ubuntu22.04</p>
@@ -460,6 +425,22 @@
 <p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101045165.png" alt="image-20240202101045165"></p>
 <p>WSL的好处是方便再Windows文件资源管理器下查看和传输Linux子系统文件</p>
 <p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240202101156604.png" alt="image-20240202101156604"></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>改Win10右键菜单</title>
+    <url>/2024/01/29/WIN11%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%94%B9%E5%9B%9EWIN10/</url>
+    <content><![CDATA[<h3 id="直接输命令"><a href="#直接输命令" class="headerlink" title="直接输命令"></a>直接输命令</h3><p>WIN+X选择Windows终端(管理员)进入终端</p>
+<span id="more"></span>
+
+<p>输出这段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reg add &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot; /f /ve</span><br></pre></td></tr></table></figure>
+
+<p>打开任务管理器</p>
+<p>右键Windows资源管理器-重新启动</p>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -537,6 +518,20 @@
       </categories>
   </entry>
   <entry>
+    <title>充值</title>
+    <url>/2024/02/22/%E5%85%85%E5%80%BC/</url>
+    <content><![CDATA[<h3 id="短信验证码充值"><a href="#短信验证码充值" class="headerlink" title="短信验证码充值"></a>短信验证码充值</h3><p><a href="http://h5.haozhuma.com/index.php">http://h5.haozhuma.com/index.php</a></p>
+<p>账号：rooting8<br>密码：w1234567</p>
+<p>发消息：</p>
+<p>充值500 对方会发支付宝二维码</p>
+<p>100币#5 对方会给卡密链接</p>
+<p>主页-卡密充值 输入卡密点开始充值</p>
+<h3 id="IP购买"><a href="#IP购买" class="headerlink" title="IP购买"></a>IP购买</h3>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tools</title>
     <url>/2024/02/23/tools/</url>
     <content><![CDATA[<h1 id="Jmeter"><a href="#Jmeter" class="headerlink" title="Jmeter"></a>Jmeter</h1><p>下载地址<a href="https://jmeter.apache.org/download_jmeter.cgi">https://jmeter.apache.org/download_jmeter.cgi</a></p>
@@ -566,15 +561,55 @@
       </categories>
   </entry>
   <entry>
-    <title>充值</title>
-    <url>/2024/02/22/%E5%85%85%E5%80%BC/</url>
-    <content><![CDATA[<h3 id="短信验证码充值"><a href="#短信验证码充值" class="headerlink" title="短信验证码充值"></a>短信验证码充值</h3><p><a href="http://h5.haozhuma.com/index.php">http://h5.haozhuma.com/index.php</a></p>
-<p>账号：rooting8<br>密码：w1234567</p>
-<p>发消息：</p>
-<p>充值500 对方会发支付宝二维码</p>
-<p>100币#5 对方会给卡密链接</p>
-<p>主页-卡密充值 输入卡密点开始充值</p>
-<h3 id="IP购买"><a href="#IP购买" class="headerlink" title="IP购买"></a>IP购买</h3>]]></content>
+    <title>前端</title>
+    <url>/2024/01/29/%E5%89%8D%E7%AB%AF/</url>
+    <content><![CDATA[<h3 id="1-查看vue版本"><a href="#1-查看vue版本" class="headerlink" title="1.查看vue版本"></a>1.查看vue版本</h3><p>在想要创建项目的路径下打开终端</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue -V</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="2-创建项目"><a href="#2-创建项目" class="headerlink" title="2.创建项目"></a>2.创建项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue create vue3							#小写</span><br></pre></td></tr></table></figure>
+
+<p>选择快速搭建vue3项目</p>
+<h3 id="3-安装依赖"><a href="#3-安装依赖" class="headerlink" title="3.安装依赖"></a>3.安装依赖</h3><p>VS Code打开已安装的vue3文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-运行项目"><a href="#4-运行项目" class="headerlink" title="4.运行项目"></a>4.运行项目</h3><h4 id="如果package-json文件内部scripts格式为"><a href="#如果package-json文件内部scripts格式为" class="headerlink" title="如果package.json文件内部scripts格式为"></a>如果package.json文件内部scripts格式为</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;serve&quot;: &quot;vue-cli-service serve&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;vue-cli-service build&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;vue-cli-service lint&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<h4 id="如果package-json文件内部scripts格式为-1"><a href="#如果package-json文件内部scripts格式为-1" class="headerlink" title="如果package.json文件内部scripts格式为"></a>如果package.json文件内部scripts格式为</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;max dev&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;max build&quot;,</span><br><span class="line">    &quot;format&quot;: &quot;prettier --cache --write .&quot;,</span><br><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;,</span><br><span class="line">    &quot;postinstall&quot;: &quot;max setup&quot;,</span><br><span class="line">    &quot;setup&quot;: &quot;max setup&quot;,</span><br><span class="line">    &quot;openapi&quot;: &quot;max openapi&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── src</span><br><span class="line">│ ├── assets // 存储静态资源的目录，如图片、字体等</span><br><span class="line">│ ├── components // 存储共享组件</span><br><span class="line">│ ├── router // 存储应用的路由配置</span><br><span class="line">│ ├── store // 存储应用的状态管理</span><br><span class="line">│ ├── styles // 存储全局的样式</span><br><span class="line">│ ├── utils // 存储项目中的公共方法</span><br><span class="line">│ ├── views // 存储不同的页面视图</span><br><span class="line">│ ├── App.vue // 根组件</span><br><span class="line">│ └── main.ts // 应用入口文件</span><br><span class="line">├── index.html // HTML 模板文件</span><br><span class="line">├── package.json // npm 包管理文件</span><br><span class="line">├── tsconfig.json // TypeScript 配置文件</span><br><span class="line">└── vite.config.ts // Vite 构建工具的配置文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="创建VUE3-Vite项目"><a href="#创建VUE3-Vite项目" class="headerlink" title="创建VUE3+Vite项目"></a>创建VUE3+Vite项目</h2><h3 id="1-完成项目的初始化"><a href="#1-完成项目的初始化" class="headerlink" title="1.完成项目的初始化"></a>1.完成项目的初始化</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init vite@latest xxx --template vue-ts</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127140603574.png" alt="image-20240127140603574"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127140652735.png" alt="image-20240127140652735"></p>
+<h3 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启动项目"><a href="#3-启动项目" class="headerlink" title="3.启动项目"></a>3.启动项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="配置启动可用网络和自动打开-在package-json文件中"><a href="#配置启动可用网络和自动打开-在package-json文件中" class="headerlink" title="配置启动可用网络和自动打开  在package.json文件中"></a>配置启动可用网络和自动打开  在package.json文件中</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;vite --host 0.0.0.0 --port 6666 --open&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -688,60 +723,6 @@
       </categories>
   </entry>
   <entry>
-    <title>前端</title>
-    <url>/2024/01/29/%E5%89%8D%E7%AB%AF/</url>
-    <content><![CDATA[<h3 id="1-查看vue版本"><a href="#1-查看vue版本" class="headerlink" title="1.查看vue版本"></a>1.查看vue版本</h3><p>在想要创建项目的路径下打开终端</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue -V</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h3 id="2-创建项目"><a href="#2-创建项目" class="headerlink" title="2.创建项目"></a>2.创建项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue create vue3							#小写</span><br></pre></td></tr></table></figure>
-
-<p>选择快速搭建vue3项目</p>
-<h3 id="3-安装依赖"><a href="#3-安装依赖" class="headerlink" title="3.安装依赖"></a>3.安装依赖</h3><p>VS Code打开已安装的vue3文件夹</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-运行项目"><a href="#4-运行项目" class="headerlink" title="4.运行项目"></a>4.运行项目</h3><h4 id="如果package-json文件内部scripts格式为"><a href="#如果package-json文件内部scripts格式为" class="headerlink" title="如果package.json文件内部scripts格式为"></a>如果package.json文件内部scripts格式为</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;serve&quot;: &quot;vue-cli-service serve&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;vue-cli-service build&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;vue-cli-service lint&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>启动项目命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
-
-<h4 id="如果package-json文件内部scripts格式为-1"><a href="#如果package-json文件内部scripts格式为-1" class="headerlink" title="如果package.json文件内部scripts格式为"></a>如果package.json文件内部scripts格式为</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;max dev&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;max build&quot;,</span><br><span class="line">    &quot;format&quot;: &quot;prettier --cache --write .&quot;,</span><br><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;,</span><br><span class="line">    &quot;postinstall&quot;: &quot;max setup&quot;,</span><br><span class="line">    &quot;setup&quot;: &quot;max setup&quot;,</span><br><span class="line">    &quot;openapi&quot;: &quot;max openapi&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>启动项目命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── src</span><br><span class="line">│ ├── assets // 存储静态资源的目录，如图片、字体等</span><br><span class="line">│ ├── components // 存储共享组件</span><br><span class="line">│ ├── router // 存储应用的路由配置</span><br><span class="line">│ ├── store // 存储应用的状态管理</span><br><span class="line">│ ├── styles // 存储全局的样式</span><br><span class="line">│ ├── utils // 存储项目中的公共方法</span><br><span class="line">│ ├── views // 存储不同的页面视图</span><br><span class="line">│ ├── App.vue // 根组件</span><br><span class="line">│ └── main.ts // 应用入口文件</span><br><span class="line">├── index.html // HTML 模板文件</span><br><span class="line">├── package.json // npm 包管理文件</span><br><span class="line">├── tsconfig.json // TypeScript 配置文件</span><br><span class="line">└── vite.config.ts // Vite 构建工具的配置文件</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="创建VUE3-Vite项目"><a href="#创建VUE3-Vite项目" class="headerlink" title="创建VUE3+Vite项目"></a>创建VUE3+Vite项目</h2><h3 id="1-完成项目的初始化"><a href="#1-完成项目的初始化" class="headerlink" title="1.完成项目的初始化"></a>1.完成项目的初始化</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init vite@latest xxx --template vue-ts</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127140603574.png" alt="image-20240127140603574"></p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240127140652735.png" alt="image-20240127140652735"></p>
-<h3 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-启动项目"><a href="#3-启动项目" class="headerlink" title="3.启动项目"></a>3.启动项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-<h4 id="配置启动可用网络和自动打开-在package-json文件中"><a href="#配置启动可用网络和自动打开-在package-json文件中" class="headerlink" title="配置启动可用网络和自动打开  在package.json文件中"></a>配置启动可用网络和自动打开  在package.json文件中</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;vite --host 0.0.0.0 --port 6666 --open&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>右键菜单集成打开方式</title>
     <url>/2024/01/29/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E9%9B%86%E6%88%90%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="WIN-R输入regedit打开注册表编辑器"><a href="#WIN-R输入regedit打开注册表编辑器" class="headerlink" title="WIN+R输入regedit打开注册表编辑器"></a>WIN+R输入regedit打开注册表编辑器</h2><span id="more"></span>
@@ -842,6 +823,15 @@
       </categories>
   </entry>
   <entry>
+    <title>重装EXSI系统</title>
+    <url>/2024/01/29/%E9%87%8D%E8%A3%85EXSI%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>群晖挂载</title>
     <url>/2024/02/01/%E7%BE%A4%E6%99%96%E6%8C%82%E8%BD%BD/</url>
     <content><![CDATA[<h3 id="1-群晖共享文件挂载到Linux-NFS"><a href="#1-群晖共享文件挂载到Linux-NFS" class="headerlink" title="1.群晖共享文件挂载到Linux(NFS)"></a>1.群晖共享文件挂载到Linux(NFS)</h3><p>①.群晖登录admin用户</p>
@@ -886,15 +876,6 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mklink /D E:\Code\Two\pressure-csair-server\logs Y:\</span><br></pre></td></tr></table></figure>
 
 <p>这样设置后 E:\Code\Two\pressure-csair-server\logs 文件夹实际上是指向群晖上的&#x2F;volume1&#x2F;d113共享文件夹&#x2F;logs 文件夹</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>重装EXSI系统</title>
-    <url>/2024/01/29/%E9%87%8D%E8%A3%85EXSI%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<span id="more"></span>
 ]]></content>
       <categories>
         <category>笔记</category>
